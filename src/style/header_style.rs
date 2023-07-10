@@ -7,7 +7,7 @@ pub fn get_header_style() -> StyleSource {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background-color: black;
+                background-color: rgba(0,0,0,0.9);
                 color: white;
                 padding: 2em;
                 font-family: monospace;
@@ -15,7 +15,8 @@ pub fn get_header_style() -> StyleSource {
 
             h1,h2 {
                 cursor: pointer;
-                padding: 5px;
+                padding: 0.2em;
+                border-radius: 10px;
             }
 
             h2:hover {
