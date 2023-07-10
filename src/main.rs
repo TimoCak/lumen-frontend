@@ -1,7 +1,10 @@
 use yew::prelude::*;
+use yew_router::prelude::*;
 use lumen_frontend::components::header::HeaderComponent;
 use lumen_frontend::style::app_style::get_app_style;
 use stylist::yew::Global;
+use lumen_frontend::router::{switch, Route};
+
 
 #[function_component]
 fn App() -> Html {
@@ -9,7 +12,9 @@ fn App() -> Html {
         <>  
             <Global css={get_app_style()}/>
             <HeaderComponent />
-            <h1>{"Hello Lumen!"}</h1>
+            <BrowserRouter>
+                <Switch<Route> render={switch} />
+            </BrowserRouter>
         </>
     }
 }
