@@ -24,6 +24,11 @@ pub fn get_header_style() -> StyleSource {
                 box-shadow: 3px 3px 3px grey, -4px 3px 3px grey;
                 transition: 0.5s;
             }
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
         "#
     )
 }

@@ -1,11 +1,16 @@
 use yew_router::prelude::*;
 use yew::prelude::*;
-use crate::components::home::HomeComponent;
+use crate::components::{home::HomeComponent, showcase::ShowcaseComponent, discussions::DiscussionsComponent};
 
-#[derive(Clone, Routable, PartialEq)]
+#[derive(Clone, Routable, PartialEq, Debug)]
 pub enum Route {
     #[at("/")]
     Home,
+    #[at("/showcase")]
+    Showcase,
+    #[at("/discussions")]
+    Discussions,
+    #[not_found]
     #[at("/404")]
     NotFound,
 }
@@ -13,6 +18,8 @@ pub enum Route {
 pub fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html!{ <><HomeComponent /></>},
-        Route::NotFound => html!{ <><h3>{"404 NOT FOUND!"}</h3></>}
+        Route::Showcase => html!{ <><ShowcaseComponent /></>},
+        Route::Discussions => html!{ <><DiscussionsComponent /></>},
+        Route::NotFound => html!{ <><h3>{"404 NOT FOUND!"}</h3></>},
     }
 }

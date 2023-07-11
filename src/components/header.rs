@@ -1,6 +1,7 @@
 use yew::prelude::*;
 use stylist::yew::Global;
-use crate::style::header_style::get_header_style;
+use yew_router::prelude::Link;
+use crate::{style::header_style::get_header_style, router::Route};
 
 #[function_component]
 pub fn HeaderComponent() -> Html {
@@ -9,9 +10,9 @@ pub fn HeaderComponent() -> Html {
         <>  
             <Global css={get_header_style()} />
             <div class={classes!("header")}>
-                <h1>{"Lumen"}</h1>
-                <h2>{"Showcase"}</h2>
-                <h2>{"Discussions"}</h2>
+                <Link<Route> to={Route::Home}><h1>{"Lumen"}</h1></Link<Route>>
+                <Link<Route> to={Route::Showcase}><h2>{"Showcase"}</h2></Link<Route>>
+                <Link<Route> to={Route::Discussions}><h2>{"Discussions"}</h2></Link<Route>>
             </div>
         </>
     }
