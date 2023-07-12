@@ -18,6 +18,7 @@ fn App() -> Html {
                 <Global css={get_app_style()}/>
                 <HeaderComponent />
                 <Switch<Route> render={switch} />
+                <footer><a target={"_blank"} href={"https://github.com/TimoCak/lumen-frontend"}>{"Github"}</a></footer>
             </BrowserRouter>
         </>
     }

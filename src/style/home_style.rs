@@ -15,7 +15,9 @@ pub fn get_home_style() -> StyleSource {
                 padding: 1em;
                 background-color: rgba(0,0,0,0.8);
                 border-radius: 10px;
-                width: 100vw;
+                width: 90vw;
+                margin-left: auto;
+                margin-right: auto;  
             }
             .lumen-intro {
                 display: block;

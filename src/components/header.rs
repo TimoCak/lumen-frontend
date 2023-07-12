@@ -10,9 +10,10 @@ pub fn HeaderComponent() -> Html {
         <>  
             <Global css={get_header_style()} />
             <div class={classes!("header")}>
-                <Link<Route> to={Route::Home}><h1>{"Lumen"}</h1></Link<Route>>
-                <Link<Route> to={Route::Showcase}><h2>{"Showcase"}</h2></Link<Route>>
-                <Link<Route> to={Route::Discussions}><h2>{"Discussions"}</h2></Link<Route>>
+                <Link<Route> to={Route::Home} classes={classes!("header-link")}><h1>{"Lumen"}</h1></Link<Route>>
+                <Link<Route> to={Route::Showcase} classes={classes!("header-link")}><h2>{"Showcase"}</h2></Link<Route>>
+                <Link<Route> to={Route::Discussions} classes={classes!("header-link")}><h2>{"Discussions"}</h2></Link<Route>>
+                <Link<Route> to={Route::Login} classes={classes!("header-link")}><img class={classes!("filter-light")} src={"./assets/sign_in.svg"}/></Link<Route>>
             </div>
         </>
     }

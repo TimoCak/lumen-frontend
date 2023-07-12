@@ -1,5 +1,5 @@
 use stylist::{StyleSource, css};
-
+//wichtige Farbe: #E4EE8C
 pub fn get_app_style() -> StyleSource {
     css!(
         r#"
@@ -11,7 +11,6 @@ pub fn get_app_style() -> StyleSource {
         }
 
         h3 {
-            text-decoration: underline;  
             font-size: 36px;
             padding: 0px !important;
             margin: 0px !important;
