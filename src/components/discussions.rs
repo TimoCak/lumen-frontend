@@ -4,7 +4,7 @@ use yew::prelude::*;
 pub fn DiscussionsComponent() -> Html {
     html! {
         <>
-            <h1>{"Discussions"}</h1>
+            <h3>{"Discussions"}</h3>
         </>
     }
 }
