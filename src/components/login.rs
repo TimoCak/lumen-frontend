@@ -14,8 +14,8 @@ pub fn LoginComponent() -> Html {
                 <InputFieldComponent label={"username:"} input_type={"text"}/>
                 <InputFieldComponent label={"password:"} input_type={"password"}/>
                 <div class={"button-container"}>
-                    <ButtonComponent size={"20px"} text={"sign up"}/>
-                    <p><Link<Route> to={Route::Home}>{"Not signed up yet?"}</Link<Route>></p>
+                    <ButtonComponent size={"20px"} text={"sign in"}/>
+                    <p><Link<Route> to={Route::Register}>{"Not signed up yet?"}</Link<Route>></p>
                 </div>
             </div>
             
