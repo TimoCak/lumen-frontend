@@ -26,7 +26,7 @@ pub fn get_home_style() -> StyleSource {
                 color: white;
                 background-color: rgba(0,0,0,0.8);
                 border-radius: 10px;
-                padding: 0.5em;
+                padding: 1em;
                 text-align: center;
                 width: 50vw;
             }

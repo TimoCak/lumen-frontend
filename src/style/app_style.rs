@@ -13,10 +13,9 @@ pub fn get_app_style() -> StyleSource {
         h3 {
             text-decoration: underline;  
             font-size: 36px;
-        }
-
-        
-        
+            padding: 0px !important;
+            margin: 0px !important;
+        }  
         "#
     )
 }
