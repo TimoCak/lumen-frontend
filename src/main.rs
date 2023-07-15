@@ -4,14 +4,11 @@ use lumen_frontend::components::header::HeaderComponent;
 use lumen_frontend::style::app_style::get_app_style;
 use stylist::yew::Global;
 use lumen_frontend::router::{switch, Route};
-use lumen_frontend::js::log;
 
 
 #[function_component]
 fn App() -> Html {
-    /*let location = use_route::<Route>().unwrap_or_default();
-    let location_2 = use_location().unwrap();
-    log(format!("{:?}", location));*/
+
     html!{
         <>  
             <BrowserRouter>
@@ -23,7 +20,6 @@ fn App() -> Html {
         </>
     }
 }
-
 
 fn main() {
     yew::Renderer::<App>::new().render();

@@ -1,10 +1,64 @@
 use crate::components::ui::button::ButtonComponent;
 use crate::components::ui::input_field::InputFieldComponent;
+use crate::get_backend_url;
 use crate::js::log;
 use crate::{router::Route, style::register_style::get_register_style};
 use stylist::yew::Global;
 use yew::prelude::*;
 use yew_router::prelude::Link;
+use serde::{Serialize, Deserialize};
+use serde_json;
+use reqwasm::http::Request;
+
+#[derive(Serialize, Deserialize, Debug)]
+struct User {
+    username: String,
+    email: String,
+    password: String,
+}
+
+#[derive(Deserialize)]
+struct UserResponse {
+    id: i32,
+    username: String,
+    email: String,
+    password: String,
+    role: String,
+}
+
+/* woanders auslagern */
+
+
+/* extrat Ordner mit HTTP-Requests erstellen */
+fn post_user(username: String, email: String, password: String) {
+    
+    let user = User {
+        username,
+        email,
+        password,
+    };
+
+    wasm_bindgen_futures::spawn_local(async move {
+        
+        let backend_url = get_backend_url();
+        let url = format!("{}/sign-up", backend_url);
+
+        let fetched_user = Request::post(&url)
+            .header("Content-Type", "application/json")
+            .body(serde_json::to_string(&user).unwrap())
+            .send()
+            .await
+            .unwrap()
+            .text()
+            .await
+            .unwrap();
+
+        log(format!("{}", fetched_user));
+    });
+    
+    
+    /*serde_json::from_str(&response).expect("couldn't deserialize into UserResponse")  */
+}
 
 #[function_component]
 pub fn RegisterComponent() -> Html {
@@ -12,11 +66,15 @@ pub fn RegisterComponent() -> Html {
     let username_entry = use_state(|| "".to_owned());
     let username_entry_setter = username_entry.setter();
 
-    let email_entry = use_state(String::default);
+    let email_entry = use_state(|| "".to_owned());
+    let email_entry_setter = email_entry.setter();
 
 
     let password_entry = use_state(String::default);
+    let password_entry_setter = password_entry.setter(); 
+
     let repeated_password_entry = use_state(String::default);
+    let repeated_password_entry_setter = repeated_password_entry.setter();
 
     let username_value_visual = (*username_entry).clone();
 
@@ -25,20 +83,20 @@ pub fn RegisterComponent() -> Html {
     });
 
     let on_email_entry = Callback::from(move |email: String| {
-        let greeting = format!("Hey, {}", email);
+        email_entry_setter.set(email);
     });
 
     let on_password_entry = Callback::from(move |password: String| {
-        let greeting = format!("Hey, {}", password);
+        password_entry_setter.set(password);
     });
 
     let on_repeated_password_entry = Callback::from(move |repeated_password: String| {
-        let greeting = format!("Hey, {}", repeated_password);
+        repeated_password_entry_setter.set(repeated_password);
     });
 
     let onclick = {
         move |_| {
-            log("CLICK!".to_string());
+            post_user((*username_entry).clone(), (*email_entry).clone(), (*password_entry).clone());
         }
     };
 

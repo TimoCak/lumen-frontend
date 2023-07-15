@@ -2,7 +2,7 @@ use stylist::yew::Global;
 use yew::prelude::*;
 use crate::style::input_field_style::get_input_field_style;
 use wasm_bindgen::JsCast;
-use web_sys::{EventTarget, HtmlInputElement};
+use web_sys::{HtmlInputElement};
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -26,7 +26,7 @@ pub fn InputFieldComponent(props: &Props) -> Html {
             entry.emit(value)
         })
     };
-    
+
     html! {
         <>  
             <Global css={get_input_field_style()} />
