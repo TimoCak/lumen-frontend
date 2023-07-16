@@ -8,4 +8,10 @@ extern "C" {
    #[wasm_bindgen(js_namespace = console)]
    pub fn log(s: String);
 
+   #[wasm_bindgen(js_namespace = window)]
+   pub fn alert(s: String);
+
+   #[wasm_bindgen(js_namespace = location)]
+   pub fn href(s: String);
+
 }

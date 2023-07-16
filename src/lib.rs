@@ -7,3 +7,7 @@ pub mod requests;
 pub fn get_backend_url() -> String {
     String::from("http://localhost:8081/api")
  }
+
+ pub fn get_frontend_url() -> String {
+    String::from("http://localhost:8080")
+ }
