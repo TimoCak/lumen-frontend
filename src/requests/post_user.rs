@@ -11,15 +11,6 @@ struct User {
     password: String,
 }
 
-#[derive(Deserialize)]
-struct UserResponse {
-    id: i32,
-    username: String,
-    email: String,
-    password: String,
-    role: String,
-}
-
 pub fn post_user(username: String, email: String, password: String, repeated_password: String) -> String {
     
     let mut output = "";
