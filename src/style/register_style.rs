@@ -22,6 +22,11 @@ pub fn get_register_style() -> StyleSource {
         .button-container {
             text-align: center;
         }
+
+        .error-message {
+            color: red;
+            font-size: 16px;
+        }
         "#
     )
 }

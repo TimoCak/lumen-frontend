@@ -71,7 +71,7 @@ pub fn RegisterComponent() -> Html {
                      </div>
                     <p><Link<Route> to={Route::Login}>{"Already signed up?"}</Link<Route>></p>
                 </div>
-                <h3>{(*error_message).clone()}</h3>
+                <p class={"error-message"}>{(*error_message).clone()}</p>
             </div>
         </>
     }

@@ -45,7 +45,7 @@ pub fn post_user(username: String, email: String, password: String, repeated_pas
                 .unwrap();
                             
             
-            if fetched_user.eq("username is already taken!") {
+            if fetched_user.eq("username is already taken!") {                
                 alert(fetched_user);
             } 
         });
