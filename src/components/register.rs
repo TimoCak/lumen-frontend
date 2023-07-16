@@ -1,64 +1,10 @@
 use crate::components::ui::button::ButtonComponent;
 use crate::components::ui::input_field::InputFieldComponent;
-use crate::get_backend_url;
-use crate::js::log;
 use crate::{router::Route, style::register_style::get_register_style};
 use stylist::yew::Global;
 use yew::prelude::*;
 use yew_router::prelude::Link;
-use serde::{Serialize, Deserialize};
-use serde_json;
-use reqwasm::http::Request;
-
-#[derive(Serialize, Deserialize, Debug)]
-struct User {
-    username: String,
-    email: String,
-    password: String,
-}
-
-#[derive(Deserialize)]
-struct UserResponse {
-    id: i32,
-    username: String,
-    email: String,
-    password: String,
-    role: String,
-}
-
-/* woanders auslagern */
-
-
-/* extrat Ordner mit HTTP-Requests erstellen */
-fn post_user(username: String, email: String, password: String) {
-    
-    let user = User {
-        username,
-        email,
-        password,
-    };
-
-    wasm_bindgen_futures::spawn_local(async move {
-        
-        let backend_url = get_backend_url();
-        let url = format!("{}/sign-up", backend_url);
-
-        let fetched_user = Request::post(&url)
-            .header("Content-Type", "application/json")
-            .body(serde_json::to_string(&user).unwrap())
-            .send()
-            .await
-            .unwrap()
-            .text()
-            .await
-            .unwrap();
-
-        log(format!("{}", fetched_user));
-    });
-    
-    
-    /*serde_json::from_str(&response).expect("couldn't deserialize into UserResponse")  */
-}
+use crate::requests::post_user::post_user;
 
 #[function_component]
 pub fn RegisterComponent() -> Html {
