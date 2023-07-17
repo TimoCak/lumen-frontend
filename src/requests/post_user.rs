@@ -1,8 +1,9 @@
-use serde::{Serialize, Deserialize};
-use serde_json;
+use crate::{get_backend_url, router::Route};
 use reqwasm::http::Request;
-use crate::get_backend_url;
-use crate::js::alert;
+use serde::{Deserialize, Serialize};
+use serde_json;
+use yew::UseStateSetter;
+use yew_router::prelude::*;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct User {
@@ -11,10 +12,14 @@ struct User {
     password: String,
 }
 
-pub fn post_user(username: String, email: String, password: String, repeated_password: String) -> String {
-    
-    let mut output = "";
-
+pub fn post_user(
+    username: String,
+    email: String,
+    password: String,
+    repeated_password: String,
+    use_state_handle_setter: UseStateSetter<String>,
+    navigator: Navigator,
+) {
     let user = User {
         username: username.clone(),
         email: email.clone(),
@@ -22,18 +27,14 @@ pub fn post_user(username: String, email: String, password: String, repeated_pas
     };
 
     if repeated_password.eq("") || password.eq("") || email.eq("") || username.eq("") {
-        output = "fill out all input fields!";
+        use_state_handle_setter.set("fill out all input fields!".to_owned());
     } else if !password.eq(repeated_password.as_str()) {
-        output = "Passwords do not match!";
+        use_state_handle_setter.set("Passwords do not match!".to_owned());
     } else {
-
-        output = "post user successed!";
-
         wasm_bindgen_futures::spawn_local(async move {
-
             let backend_url = get_backend_url();
             let url = format!("{}/sign-up", backend_url);
-            
+
             let fetched_user = Request::post(&url)
                 .header("Content-Type", "application/json")
                 .body(serde_json::to_string(&user).unwrap())
@@ -43,15 +44,13 @@ pub fn post_user(username: String, email: String, password: String, repeated_pas
                 .text()
                 .await
                 .unwrap();
-                            
-            
-            if fetched_user.eq("username is already taken!") {                
-                alert(fetched_user);
-            } 
-        });
-        
-    }
 
-    output.to_owned()
+            use_state_handle_setter.set(fetched_user.clone());
+
+            if fetched_user.eq("post user successed!") {
+                navigator.push(&Route::Login);
+            }
+        });
+    }
     /*serde_json::from_str(&response).expect("couldn't deserialize into UserResponse")  */
 }

@@ -1,15 +1,13 @@
 use crate::components::ui::button::ButtonComponent;
 use crate::components::ui::input_field::InputFieldComponent;
-use crate::js::log;
+use crate::requests::post_user::post_user;
 use crate::{router::Route, style::register_style::get_register_style};
 use stylist::yew::Global;
 use yew::prelude::*;
-use yew_router::prelude::{Link, use_navigator};
-use crate::requests::post_user::post_user;
+use yew_router::prelude::{use_navigator, Link};
 
 #[function_component]
 pub fn RegisterComponent() -> Html {
-
     let navigator = use_navigator().unwrap();
 
     let username_entry = use_state(|| "".to_owned());
@@ -18,17 +16,14 @@ pub fn RegisterComponent() -> Html {
     let email_entry = use_state(|| "".to_owned());
     let email_entry_setter = email_entry.setter();
 
-
     let password_entry = use_state(String::default);
-    let password_entry_setter = password_entry.setter(); 
+    let password_entry_setter = password_entry.setter();
 
     let repeated_password_entry = use_state(String::default);
     let repeated_password_entry_setter = repeated_password_entry.setter();
 
-    let username_value_visual = (*username_entry).clone();
-
     let error_message = use_state(|| "".to_owned());
-    let error_message_setter = error_message.setter();
+    let error_message_visible = (*error_message).clone();
 
     let on_username_entry = Callback::from(move |username: String| {
         username_entry_setter.set(username);
@@ -46,16 +41,16 @@ pub fn RegisterComponent() -> Html {
         repeated_password_entry_setter.set(repeated_password);
     });
 
-    let onclick = {
-        move |_| {
-            let message = post_user((*username_entry).clone(), (*email_entry).clone(), (*password_entry).clone(), (*repeated_password_entry).clone());
-            error_message_setter.set(message.clone());
-            log(message.clone());
-            if message.eq("post user successed!") {
-                navigator.push(&Route::Login);
-            }
-        }
-    };
+    let onclick = Callback::from(move |_| {
+        post_user(
+            (*username_entry).clone(),
+            (*email_entry).clone(),
+            (*password_entry).clone(),
+            (*repeated_password_entry).clone(),
+            error_message.setter(),
+            navigator.clone(),
+        );
+    });
 
     html! {
         <>
@@ -71,7 +66,7 @@ pub fn RegisterComponent() -> Html {
                      </div>
                     <p><Link<Route> to={Route::Login}>{"Already signed up?"}</Link<Route>></p>
                 </div>
-                <p class={"error-message"}>{(*error_message).clone()}</p>
+                <p class={"error-message"}>{error_message_visible}</p>
             </div>
         </>
     }
