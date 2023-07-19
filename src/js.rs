@@ -14,9 +14,9 @@ extern "C" {
    #[wasm_bindgen(js_namespace = location)]
    pub fn href(s: String);
 
-   #[wasm_bindgen(js_namespace = localStorage)]
+   #[wasm_bindgen(js_namespace = sessionStorage)]
    pub fn setItem(key: String, value: JsValue);
    pub fn getItem(key: String);
-   pub fn removeItem(key: String);
-
+   pub fn remove(key: String);
+   pub fn clear();
 }
