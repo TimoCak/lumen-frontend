@@ -1,8 +1,10 @@
 use reqwasm::http::Request;
 use serde::{Deserialize, Serialize};
+use web_sys::window;
 use yew::UseStateSetter;
 use yew_router::prelude::Navigator;
 
+use crate::get_frontend_url;
 use crate::js::setItem;
 use crate::{get_backend_url, router::Route};
 
@@ -22,6 +24,7 @@ pub fn post_login(
         username: username.to_owned(),
         password: password.to_owned(),
     };
+    let location = window().unwrap().location();
 
     wasm_bindgen_futures::spawn_local(async move {
         let backend_url = get_backend_url();
@@ -42,6 +45,7 @@ pub fn post_login(
             response_text.set("wrong username or password!".to_owned());
         } else if response.status() == 200 {
             setItem("currentUser".to_owned(), response_body.into());
+            location.set_href(&get_frontend_url()).unwrap();
             navigator.push(&Route::Home);
         }
     });

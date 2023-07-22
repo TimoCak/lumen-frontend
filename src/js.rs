@@ -1,3 +1,4 @@
+
 /*
 Using this file to translate important methods from JS into Rust
 */
@@ -16,7 +17,7 @@ extern "C" {
 
    #[wasm_bindgen(js_namespace = sessionStorage)]
    pub fn setItem(key: String, value: JsValue);
-   pub fn getItem(key: String);
+   pub fn getItem(key: String) -> JsValue;
    pub fn remove(key: String);
    pub fn clear();
 }

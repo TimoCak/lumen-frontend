@@ -29,4 +29,5 @@ features = [
   'HtmlElement',
   'Node',
   'Window',
+  'Storage',
 ]

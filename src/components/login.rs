@@ -18,7 +18,9 @@ pub fn LoginComponent() -> Html {
 
     let message = use_state(|| "".to_owned());
     let message_visible = (*message).clone();
-    
+
+    //let user
+
     let on_username_entry = Callback::from(move |username: String| {
         username_entry_setter.set(username);
     });
