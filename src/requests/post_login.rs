@@ -18,12 +18,13 @@ pub fn post_login(
     username: &String,
     password: &String,
     navigator: Navigator,
-    response_text: UseStateSetter<String>,
+    response_text: UseStateSetter<String>
 ) {
     let user = User {
         username: username.to_owned(),
         password: password.to_owned(),
     };
+
     let location = window().unwrap().location();
 
     wasm_bindgen_futures::spawn_local(async move {
@@ -45,8 +46,9 @@ pub fn post_login(
             response_text.set("wrong username or password!".to_owned());
         } else if response.status() == 200 {
             setItem("currentUser".to_owned(), response_body.into());
-            location.set_href(&get_frontend_url()).unwrap();
             navigator.push(&Route::Home);
+            location.set_href(&get_frontend_url()).unwrap();
         }
+        
     });
 }

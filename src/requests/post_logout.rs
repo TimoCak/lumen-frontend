@@ -1,14 +1,13 @@
 use reqwasm::http::Request;
 use web_sys::window;
+use yew::UseForceUpdateHandle;
 use yew_router::prelude::Navigator;
 
-use crate::{get_backend_url, get_frontend_url};
+use crate::get_backend_url;
 use crate::router::Route;
 
-pub fn post_logout(navigator: Navigator) {
+pub fn post_logout(navigator: Navigator, update: UseForceUpdateHandle) {
     let storage = window().unwrap().session_storage().unwrap().unwrap();
-
-    let location = window().unwrap().location();
 
     wasm_bindgen_futures::spawn_local(async move {
         let backend_url = get_backend_url();
@@ -21,8 +20,8 @@ pub fn post_logout(navigator: Navigator) {
 
         if response.status() == 200 {
             storage.clear().unwrap();
-            location.set_href(&get_frontend_url()).unwrap();
             navigator.push(&Route::Home); 
+            update.force_update();
         }
     });
 }
