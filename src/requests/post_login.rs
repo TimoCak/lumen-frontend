@@ -2,6 +2,7 @@ use reqwasm::http::Request;
 use serde::{Deserialize, Serialize};
 use web_sys::window;
 use yew::UseStateSetter;
+use yew::platform::spawn_local;
 use yew_router::prelude::Navigator;
 
 use crate::get_frontend_url;
@@ -18,7 +19,7 @@ pub fn post_login(
     username: &String,
     password: &String,
     navigator: Navigator,
-    response_text: UseStateSetter<String>
+    response_text: UseStateSetter<String>,
 ) {
     let user = User {
         username: username.to_owned(),
@@ -27,7 +28,7 @@ pub fn post_login(
 
     let location = window().unwrap().location();
 
-    wasm_bindgen_futures::spawn_local(async move {
+    spawn_local(async move {
         let backend_url = get_backend_url();
         let url = format!("{}/sign-in", backend_url);
 
@@ -49,6 +50,5 @@ pub fn post_login(
             navigator.push(&Route::Home);
             location.set_href(&get_frontend_url()).unwrap();
         }
-        
     });
 }

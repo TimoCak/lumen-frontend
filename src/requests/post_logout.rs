@@ -1,6 +1,7 @@
 use reqwasm::http::Request;
 use web_sys::window;
 use yew::UseForceUpdateHandle;
+use yew::platform::spawn_local;
 use yew_router::prelude::Navigator;
 
 use crate::get_backend_url;
@@ -9,7 +10,7 @@ use crate::router::Route;
 pub fn post_logout(navigator: Navigator, update: UseForceUpdateHandle) {
     let storage = window().unwrap().session_storage().unwrap().unwrap();
 
-    wasm_bindgen_futures::spawn_local(async move {
+    spawn_local(async move {
         let backend_url = get_backend_url();
         let url = format!("{}/sign-out", backend_url);
 

@@ -1,7 +1,7 @@
 use crate::{get_backend_url, router::Route, User};
 use reqwasm::http::Request;
 use serde_json;
-use yew::UseStateSetter;
+use yew::{UseStateSetter, platform::spawn_local};
 use yew_router::prelude::*;
 
 pub fn post_user(
@@ -23,7 +23,7 @@ pub fn post_user(
     } else if !password.eq(repeated_password.as_str()) {
         use_state_handle_setter.set("Passwords do not match!".to_owned());
     } else {
-        wasm_bindgen_futures::spawn_local(async move {
+        spawn_local(async move {
             let backend_url = get_backend_url();
             let url = format!("{}/sign-up", backend_url);
 
