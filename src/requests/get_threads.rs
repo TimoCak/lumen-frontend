@@ -6,7 +6,7 @@ use yew::{platform::spawn_local, UseStateSetter};
 
 use crate::get_backend_url;
 
-#[derive(Debug, Deserialize, Serialize, Clone)]
+#[derive(Debug, Deserialize, Serialize, Clone, PartialEq)]
 pub struct Thread {
     pub id: i32,
     pub author: String,

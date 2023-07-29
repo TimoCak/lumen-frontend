@@ -1,28 +1,30 @@
 use yew::prelude::*;
 
-use crate::requests::get_threads::get_threads;
+use crate::requests::get_threads::Thread;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
-    pub is_loading: bool,
+    pub thread: Thread,
 }
 
 #[function_component]
-pub fn ThreadComponent() -> Html {
-    let threads = use_state(|| vec![]);
-    let threads_setter = threads.setter();
-
-    use_effect_with_deps(move |()| get_threads(threads_setter), ());
+pub fn ThreadComponent(props: &Props) -> Html {
+    
+    let thread = props.thread.clone(); 
 
     html! {
         <>
-        <div id={"introductions"}>
-        {
-            threads.iter().map(|thread| {
-                html!{<div key={thread.id}>{ format!("Title: {}!",thread.title) }</div>}
-            }).collect::<Html>()
-        }
-        </div>
+            <div> 
+                <ul> 
+                    <li>{thread.id}</li>
+                    <li>{thread.author}</li> 
+                    <li>{thread.title}</li> 
+                    <li>{thread.text}</li> 
+                    <li>{thread.likes}</li>
+                    <li>{thread.dislikes}</li>
+                    <li>{thread.categories.len()}</li>   
+                </ul>
+            </div>
 
         </>
 
