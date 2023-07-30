@@ -1,7 +1,8 @@
 use yew::prelude::*;
+use yew_router::prelude::Link;
 
 use crate::requests::get_threads::get_threads;
-use crate::components::discussion_components::thread::ThreadComponent;
+use crate::router::Route;
 
 #[function_component]
 pub fn ThreadListComponent() -> Html {
@@ -15,7 +16,10 @@ pub fn ThreadListComponent() -> Html {
         <div id={"introductions"}>
         {
             threads.iter().map(|thread| {
-                html!{<div key={thread.id}><ThreadComponent thread={thread.clone()}/></div>}
+                html!{
+                    <h3 key={thread.id}>
+                    <Link<Route> to={Route::Thread{id: thread.id}}><li>{thread.title.clone()}</li></Link<Route>>
+                    </h3>}
             }).collect::<Html>()
         }
         </div>
