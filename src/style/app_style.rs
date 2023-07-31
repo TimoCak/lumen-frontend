@@ -6,8 +6,9 @@ pub fn get_app_style() -> StyleSource {
 
         body {
             margin: 0 !important; 
-            background-color: rgba(200,200,200,1);
+            background-color: rgba(0,0,0,0.8);
             font-family: monospace;
+            color: white;
         }
 
         h3 {
@@ -15,6 +16,10 @@ pub fn get_app_style() -> StyleSource {
             padding: 0px !important;
             margin: 0px !important;
         }  
+
+        a {
+            color: pink;
+        }
         "#
     )
 }
