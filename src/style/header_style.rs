@@ -9,7 +9,7 @@ pub fn get_header_style() -> StyleSource {
                 align-items: center;
                 background-color: rgba(0,0,0,0.9);
                 color: white;
-                padding: 2em;
+                padding: 0.8em;
             }
 
             h1,h2 {

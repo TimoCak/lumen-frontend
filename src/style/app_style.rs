@@ -6,8 +6,8 @@ pub fn get_app_style() -> StyleSource {
 
         body {
             margin: 0 !important; 
-            background-color: rgba(0,0,0,0.8);
-            font-family: monospace;
+            background-color: rgba(0,0,0,0.7);
+            font-family: Rubik;
             color: white;
         }
 

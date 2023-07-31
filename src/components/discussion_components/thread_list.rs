@@ -13,12 +13,12 @@ pub fn ThreadListComponent() -> Html {
 
     html! {
         <>
-        <div id={"introductions"}>
+        <div id={"thread-list-container"}>
         {
             threads.iter().map(|thread| {
                 html!{
                     <h3 key={thread.id}>
-                    <Link<Route> to={Route::Thread{id: thread.id}}><li>{thread.title.clone()}</li></Link<Route>>
+                        <Link<Route> to={Route::Thread{id: thread.id}}>{thread.title.clone()}</Link<Route>>
                     </h3>}
             }).collect::<Html>()
         }

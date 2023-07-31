@@ -22,12 +22,10 @@ pub fn DiscussionsComponent() -> Html {
         <>  
             <Global css={get_discussions_style()} />
             <div class={"discussions-container"}>
-                <h3>{"Discussions"}</h3>
-                <div onclick={ontoggle}>
+                <div >
+                    <button onclick={ontoggle}>{"KLICK"}</button>
                     if toggle_display {
                         <ThreadPostComponent />
-                    } else {
-                        <button>{"KLICK"}</button>
                     } 
                 </div>
                 <ThreadListComponent />
