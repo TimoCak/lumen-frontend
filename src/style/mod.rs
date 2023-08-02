@@ -7,3 +7,4 @@ pub mod input_field_style;
 pub mod login_style;
 pub mod register_style;
 pub mod thread_post_style;
+pub mod thread_style;

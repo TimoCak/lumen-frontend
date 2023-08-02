@@ -1,6 +1,7 @@
+use stylist::yew::Global;
 use yew::prelude::*;
 
-use crate::requests::get_threads::{get_thread_by_id, Thread};
+use crate::{requests::get_threads::{get_thread_by_id, Thread}, style::thread_style::get_thread_style};
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -17,7 +18,8 @@ pub fn ThreadComponent(props: &Props) -> Html {
 
     html! {
         <>
-            <div>
+            <Global css={get_thread_style()} />
+            <div class={"thread-container"}>
                 <h3>{thread.title.clone()}</h3>
                 <div>{thread.text.clone()}</div>
             </div>
