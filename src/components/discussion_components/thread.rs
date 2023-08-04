@@ -21,7 +21,8 @@ pub fn ThreadComponent(props: &Props) -> Html {
             <Global css={get_thread_style()} />
             <div class={"thread-container"}>
                 <h3>{thread.title.clone()}</h3>
-                <div>{thread.text.clone()}</div>
+                <a href={""}>{thread.author.clone()}</a>
+                <div class={"thread-text"}>{thread.text.clone()}</div>
             </div>
         </>
 

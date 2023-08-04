@@ -8,6 +8,10 @@ pub fn get_thread_style() -> StyleSource {
             .thread-container {
                 text-align: center;
             }
+
+            .thread-text {
+                font-size: larger;
+            }
         "#
     )
 }

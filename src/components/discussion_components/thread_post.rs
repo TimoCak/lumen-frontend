@@ -16,7 +16,6 @@ pub fn ThreadPostComponent() -> Html {
 
     let text = use_state(|| "".to_owned());
     let text_setter = text.setter();
-
     let display_text = (*text).clone();
 
     let onchange = Callback::from(move |e: Event| {
@@ -30,6 +29,7 @@ pub fn ThreadPostComponent() -> Html {
     });
 
     let status_message = use_state(|| "".to_owned());
+    let display_status_message = (*status_message).clone();
 
     let on_title_entry = Callback::from(move |title: String| {
         title_setter.set(title);
@@ -67,6 +67,7 @@ pub fn ThreadPostComponent() -> Html {
                     <ButtonComponent size={"20px"} text={"post"}/>
                 </div>
                 //Dropdown for categories!
+                <p>{display_status_message}</p>
             </div>
         </>
     }

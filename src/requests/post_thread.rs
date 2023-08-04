@@ -4,7 +4,6 @@ use yew::{platform::spawn_local, UseStateSetter};
 
 use crate::get_backend_url;
 
-
 #[derive(Serialize)]
 pub struct ThreadForm {
     pub author: String,
@@ -34,6 +33,5 @@ pub fn post_thread(thread_form: ThreadForm, status_message: UseStateSetter<Strin
         } else {
             status_message.set("something went wrong during posting this thread!".to_string());
         }
-
     });
 }
