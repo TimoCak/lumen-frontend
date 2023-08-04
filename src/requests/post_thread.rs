@@ -19,7 +19,8 @@ pub fn post_thread(thread_form: ThreadForm, status_message: UseStateSetter<Strin
 
         let response = Request::post(&url)
             .header("Content-Type", "application/json")
-            .body(serde_json::to_string(&thread_form).unwrap())
+            .header("withCredentials", "true")
+            .body(serde_json::to_string(&thread_form).unwrap()) 
             .send()
             .await
             .unwrap();
