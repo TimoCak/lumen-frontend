@@ -12,6 +12,7 @@ pub fn get_button_style() -> StyleSource {
             color: white;
             transition: 0.5s;
             padding: 0.2em;
+            width: 100%;
         }
         "#
     )

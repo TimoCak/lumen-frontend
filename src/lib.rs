@@ -15,6 +15,13 @@ pub struct User {
     password: String,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct UserStored {
+   id: i32,
+   username: String,
+   email: String,
+}
+
 pub fn get_backend_url() -> String {
     String::from("http://localhost:8081/api")
  }

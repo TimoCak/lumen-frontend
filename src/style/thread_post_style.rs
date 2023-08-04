@@ -19,6 +19,9 @@ pub fn get_thread_post_style() -> StyleSource {
 
             .button-container {
                 text-align: center;
+                width: 10vw;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             textarea {
