@@ -1,7 +1,7 @@
 use stylist::yew::Global;
 use yew::prelude::*;
 
-use crate::{requests::get_threads::{get_thread_by_id, Thread}, style::thread_style::get_thread_style};
+use crate::{requests::get_threads::{get_thread_by_id, Thread}, style::thread_style::get_thread_style, components::discussion_components::post_list::PostListComponent};
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -14,16 +14,21 @@ pub fn ThreadComponent(props: &Props) -> Html {
 
     let thread = use_state(|| Thread::new());
     let thread_setter = thread.setter();
+
+    
+
     use_effect_with_deps(move |()| get_thread_by_id(thread_setter, id.clone()), ());
+    
 
     html! {
         <>
             <Global css={get_thread_style()} />
             <div class={"thread-container"}>
-                <h3>{thread.title.clone()}</h3>
-                <a href={""}>{thread.author.clone()}</a>
+                <h3 class={"thread-title"}>{thread.title.clone()}</h3>
+                <div>{"by "}<a href={""}>{thread.author.clone()}</a></div>
                 <div class={"thread-text"}>{thread.text.clone()}</div>
             </div>
+            <PostListComponent thread_id={id.clone()}/>
         </>
 
     }
