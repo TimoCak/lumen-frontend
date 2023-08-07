@@ -20,14 +20,10 @@ pub fn post_thread(thread_form: ThreadForm, status_message: UseStateSetter<Strin
         let response = Request::post(&url)
             .header("Content-Type", "application/json")
             .header("withCredentials", "true")
-            .body(serde_json::to_string(&thread_form).unwrap()) 
+            .body(serde_json::to_string(&thread_form).unwrap())
             .send()
             .await
             .unwrap();
-
-        //let fetched_thread = response.text().await.unwrap();
-
-        //use_state_handle_setter.set(fetched_user.clone())
 
         if response.status() == 201 {
             status_message.set("succesfully posted thread!".to_string());
