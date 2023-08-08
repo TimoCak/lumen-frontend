@@ -23,11 +23,11 @@ pub struct UserStored {
 }
 
 pub fn get_backend_url() -> String {
-    String::from("https://localhost:8081/api")
+    String::from("https://127.0.0.1:8081/api")
  }
 
  pub fn get_frontend_url() -> String {
-    String::from("http://localhost:8080")
+    String::from("http://127.0.0.1:8080")
  }
 
  pub fn is_user_set() -> bool {

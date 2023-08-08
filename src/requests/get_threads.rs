@@ -23,7 +23,6 @@ pub struct Post {
     pub dislikes: Option<i32>,
 }
 
-
 #[derive(Debug, Deserialize, Serialize, Clone, PartialEq)]
 pub struct Thread {
     pub id: i32,
@@ -65,18 +64,16 @@ pub fn get_threads(thread_list: UseStateSetter<Vec<Thread>>) {
     });
 }
 
-pub fn get_thread_by_id(thread_list: UseStateSetter<Thread>, id: i32) {
-    spawn_local(async move {
-        let backend_url = get_backend_url();
-        let url = format!("{}/threads/{}", backend_url, id);
+pub async fn get_thread_by_id(thread_list: UseStateSetter<Thread>, id: i32) {
+    let backend_url = get_backend_url();
+    let url = format!("{}/threads/{}", backend_url, id);
 
-        /* need to handle unwraps */
-        let response = Request::get(&url).send().await.unwrap();
+    /* need to handle unwraps */
+    let response = Request::get(&url).send().await.unwrap();
 
-        let response_text = response.json::<Vec<Thread>>().await.unwrap();
+    let response_text = response.json::<Vec<Thread>>().await.unwrap();
 
-        thread_list.set(response_text[0].clone());
-    });
+    thread_list.set(response_text[0].clone());
 }
 
 pub fn get_posts_by_thread_id(post_list: UseStateSetter<Vec<Post>>, id: i32) {

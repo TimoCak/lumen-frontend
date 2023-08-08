@@ -34,6 +34,7 @@ pub fn post_login(
 
         let response = Request::post(&url)
             .header("Content-Type", "application/json")
+            .header("Credentials", "includes")
             .body(serde_json::to_string(&user).unwrap())
             .send()
             .await

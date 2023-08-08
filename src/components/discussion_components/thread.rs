@@ -1,7 +1,11 @@
 use stylist::yew::Global;
-use yew::prelude::*;
+use yew::{prelude::*, platform::spawn_local};
 
-use crate::{requests::get_threads::{get_thread_by_id, Thread}, style::thread_style::get_thread_style, components::discussion_components::post_list::PostListComponent};
+use crate::{
+    components::discussion_components::post_list::PostListComponent,
+    requests::get_threads::{get_thread_by_id, Thread},
+    style::thread_style::get_thread_style,
+};
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -15,10 +19,10 @@ pub fn ThreadComponent(props: &Props) -> Html {
     let thread = use_state(|| Thread::new());
     let thread_setter = thread.setter();
 
-    
-
-    use_effect_with_deps(move |()| get_thread_by_id(thread_setter, id.clone()), ());
-    
+    use_effect_with_deps(
+        move |()| spawn_local(async move { get_thread_by_id(thread_setter, id.clone()).await }),
+        (),
+    );
 
     html! {
         <>
