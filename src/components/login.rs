@@ -39,7 +39,7 @@ pub fn LoginComponent() -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"assets/css/login_style.css"} />
+            <link rel={"stylesheet"} href={"/assets/css/login_style.css"} />
             <div class={classes!("login-form")}>
                 <InputFieldComponent on_entry={on_username_entry} label={"username:"} input_type={"text"}/>
                 <InputFieldComponent on_entry={on_password_entry} label={"password:"} input_type={"password"}/>

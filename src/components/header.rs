@@ -17,7 +17,7 @@ pub fn HeaderComponent() -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"assets/css/header_style.css"}/>
+            <link rel={"stylesheet"} href={"/assets/css/header_style.css"}/>
             <div class={classes!("header")}>
                 <Link<Route> to={Route::Home} classes={classes!("header-link")}><h1>{"Lumen"}</h1></Link<Route>>
                 <Link<Route> to={Route::Showcase} classes={classes!("header-link")}><h2>{"Showcase"}</h2></Link<Route>>

@@ -4,7 +4,7 @@ use yew::prelude::*;
 pub fn HomeComponent() -> Html {
     html! {
         <>  
-            <link rel={"stylesheet"} href={"assets/css/home_style.css"} />
+            <link rel={"stylesheet"} href={"/assets/css/home_style.css"} />
             <div class={classes!("lumen-intro")}> 
                 <h3>{"Welcome to Lumen!"}</h3>
             </div>

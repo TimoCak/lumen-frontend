@@ -24,7 +24,7 @@ pub fn ThreadComponent(props: &Props) -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"assets/css/thread_style.css"} />
+            <link rel={"stylesheet"} href={"/assets/css/thread_style.css"} />
             <div class={"thread-container"}>
                 <h3 class={"thread-title"}>{thread.title.clone()}</h3>
                 <div>{"by "}<a href={""}>{thread.author.clone()}</a></div>

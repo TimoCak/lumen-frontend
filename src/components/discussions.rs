@@ -22,7 +22,7 @@ pub fn DiscussionsComponent() -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"assets/css/discussions_style.css"}/>
+            <link rel={"stylesheet"} href={"/assets/css/discussions_style.css"}/>
             <div class={"discussions-container"}>
                 <div >
                     <div class={"toggle-button-container"} onclick={ontoggle}>

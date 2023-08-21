@@ -54,7 +54,7 @@ pub fn ThreadPostComponent() -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"assets/css/thread_post_style.css"} />
+            <link rel={"stylesheet"} href={"/assets/css/thread_post_style.css"} />
             <div  class={"thread-post-container"}>
                 <div class={"input-field-container"}>
                     <InputFieldComponent on_entry={on_title_entry} label={"Title"} input_type={"text"}/>

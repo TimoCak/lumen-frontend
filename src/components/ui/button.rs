@@ -10,7 +10,7 @@ pub struct Props {
 pub fn ButtonComponent(props: &Props) -> Html {
     html! {
         <>  
-            <link rel={"stylesheet"} href={"assets/css/button_style.css"}/>
+            <link rel={"stylesheet"} href={"/assets/css/button_style.css"}/>
             <button style={format!("font-size: {}",props.size.clone())}>{props.text.clone()}</button>
         </>
     }

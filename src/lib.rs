@@ -18,6 +18,7 @@ pub struct UserStored {
    id: i32,
    username: String,
    email: String,
+   password: String,
 }
 
 pub fn get_backend_url() -> String {

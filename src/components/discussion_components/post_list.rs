@@ -20,7 +20,7 @@ pub fn PostListComponent(props: &Props) -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"assets/css/post_list_style.css"} />
+            <link rel={"stylesheet"} href={"/assets/css/post_list_style.css"} />
             {
                 post_list_by_thread_id.iter().map(|post| {
                     html!{
