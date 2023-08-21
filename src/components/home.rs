@@ -1,12 +1,10 @@
 use yew::prelude::*;
-use stylist::yew::Global;
-use crate::style::home_style::get_home_style;
 
 #[function_component]
 pub fn HomeComponent() -> Html {
     html! {
         <>  
-            <Global css={get_home_style()} />
+            <link rel={"stylesheet"} href={"assets/css/home_style.css"} />
             <div class={classes!("lumen-intro")}> 
                 <h3>{"Welcome to Lumen!"}</h3>
             </div>
@@ -23,7 +21,7 @@ pub fn HomeComponent() -> Html {
                     <h3>{"News"}</h3>
                     <p>{"Ein Paragraph!"}</p>
                 </div>
-            </div>    
+            </div> 
         </>
     }
 }

@@ -1,13 +1,9 @@
-use crate::{
-    components::{
+use crate::components::{
         discussion_components::{
             thread_list::ThreadListComponent, thread_post::ThreadPostComponent,
         },
         ui::button::ButtonComponent,
-    },
-    style::discussions_style::get_discussions_style,
-};
-use stylist::yew::Global;
+    };
 use yew::prelude::*;
 
 #[function_component]
@@ -26,7 +22,7 @@ pub fn DiscussionsComponent() -> Html {
 
     html! {
         <>
-            <Global css={get_discussions_style()} />
+            <link rel={"stylesheet"} href={"assets/css/discussions_style.css"}/>
             <div class={"discussions-container"}>
                 <div >
                     <div class={"toggle-button-container"} onclick={ontoggle}>

@@ -6,7 +6,6 @@ use yew::platform::spawn_local;
 use yew_router::prelude::Navigator;
 
 use crate::get_frontend_url;
-use crate::js::setItem;
 use crate::{get_backend_url, router::Route};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -21,6 +20,8 @@ pub fn post_login(
     navigator: Navigator,
     response_text: UseStateSetter<String>,
 ) {
+    let storage = window().unwrap().session_storage().unwrap().unwrap();
+
     let user = User {
         username: username.to_owned(),
         password: password.to_owned(),
@@ -47,7 +48,7 @@ pub fn post_login(
         } else if response.status() == 401 {
             response_text.set("wrong username or password!".to_owned());
         } else if response.status() == 200 {
-            setItem("currentUser".to_owned(), response_body.into());
+            storage.set_item("currentUser", &response_body).expect("current user set to session storage");
             navigator.push(&Route::Home);
             location.set_href(&get_frontend_url()).unwrap();
         }

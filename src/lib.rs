@@ -2,9 +2,7 @@ use serde::{Serialize, Deserialize};
 use web_sys::window;
 
 pub mod components;
-pub mod style;
 pub mod router;
-pub mod js;
 pub mod requests;
 
 

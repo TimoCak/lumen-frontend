@@ -1,8 +1,7 @@
 use crate::components::ui::button::ButtonComponent;
 use crate::components::ui::input_field::InputFieldComponent;
 use crate::requests::post_login::post_login;
-use crate::{router::Route, style::login_style::get_login_style};
-use stylist::yew::Global;
+use crate::router::Route;
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
 
@@ -40,7 +39,7 @@ pub fn LoginComponent() -> Html {
 
     html! {
         <>
-            <Global css={get_login_style()} />
+            <link rel={"stylesheet"} href={"assets/css/login_style.css"} />
             <div class={classes!("login-form")}>
                 <InputFieldComponent on_entry={on_username_entry} label={"username:"} input_type={"text"}/>
                 <InputFieldComponent on_entry={on_password_entry} label={"password:"} input_type={"password"}/>
@@ -52,7 +51,6 @@ pub fn LoginComponent() -> Html {
                 </div>
                 <p class={"error-message"}>{message_visible}</p>
             </div>
-
         </>
     }
 }

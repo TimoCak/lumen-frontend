@@ -1,10 +1,8 @@
 use crate::{
     components::ui::{button::ButtonComponent, input_field::InputFieldComponent},
     requests::post_thread::{post_thread, ThreadForm},
-    style::thread_post_style::get_thread_post_style,
     UserStored,
 };
-use stylist::yew::Global;
 use wasm_bindgen::JsCast;
 use web_sys::{window, HtmlTextAreaElement};
 use yew::prelude::*;
@@ -56,7 +54,7 @@ pub fn ThreadPostComponent() -> Html {
 
     html! {
         <>
-            <Global css={get_thread_post_style()} />
+            <link rel={"stylesheet"} href={"assets/css/thread_post_style.css"} />
             <div  class={"thread-post-container"}>
                 <div class={"input-field-container"}>
                     <InputFieldComponent on_entry={on_title_entry} label={"Title"} input_type={"text"}/>

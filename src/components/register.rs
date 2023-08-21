@@ -1,8 +1,7 @@
 use crate::components::ui::button::ButtonComponent;
 use crate::components::ui::input_field::InputFieldComponent;
 use crate::requests::post_user::post_user;
-use crate::{router::Route, style::register_style::get_register_style};
-use stylist::yew::Global;
+use crate::router::Route;
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
 
@@ -54,7 +53,7 @@ pub fn RegisterComponent() -> Html {
 
     html! {
         <>
-            <Global css={get_register_style()} />
+            <link rel={"stylesheet"} href={"assets/css/register_style.css"} />
             <div class={classes!("login-form")}>
                 <InputFieldComponent on_entry={on_username_entry} label={"username:"} input_type={"text"}/>
                 <InputFieldComponent on_entry={on_email_entry} label={"email:"} input_type={"email"}/>

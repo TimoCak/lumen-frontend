@@ -1,8 +1,7 @@
 use crate::{
     is_user_set, requests::post_logout::post_logout,
-    router::Route, style::header_style::get_header_style,
+    router::Route
 };
-use stylist::yew::Global;
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
 
@@ -18,7 +17,7 @@ pub fn HeaderComponent() -> Html {
 
     html! {
         <>
-            <Global css={get_header_style()} />
+            <link rel={"stylesheet"} href={"assets/css/header_style.css"}/>
             <div class={classes!("header")}>
                 <Link<Route> to={Route::Home} classes={classes!("header-link")}><h1>{"Lumen"}</h1></Link<Route>>
                 <Link<Route> to={Route::Showcase} classes={classes!("header-link")}><h2>{"Showcase"}</h2></Link<Route>>

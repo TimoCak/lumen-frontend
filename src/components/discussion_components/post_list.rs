@@ -1,7 +1,5 @@
-use stylist::yew::Global;
 use yew::prelude::*;
-
-use crate::{requests::get_threads::get_posts_by_thread_id, style::post_list_style::get_post_list_style};
+use crate::requests::get_threads::get_posts_by_thread_id;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -22,7 +20,7 @@ pub fn PostListComponent(props: &Props) -> Html {
 
     html! {
         <>
-            <Global css={get_post_list_style()} />
+            <link rel={"stylesheet"} href={"assets/css/post_list_style.css"} />
             {
                 post_list_by_thread_id.iter().map(|post| {
                     html!{
