@@ -1,14 +1,12 @@
-use yew::prelude::*;
-use yew_router::prelude::*;
 use lumen_frontend::components::header::HeaderComponent;
 use lumen_frontend::router::{switch, Route};
-
+use yew::prelude::*;
+use yew_router::prelude::*;
 
 #[function_component]
 fn App() -> Html {
-
-    html!{
-        <>  
+    html! {
+        <>
             <BrowserRouter>
                 <link rel={"stylesheet"} href={"/assets/css/app_style.css"} />
                 <HeaderComponent />

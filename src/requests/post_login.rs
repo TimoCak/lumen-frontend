@@ -1,8 +1,8 @@
 use reqwasm::http::Request;
 use serde::{Deserialize, Serialize};
 use web_sys::window;
-use yew::UseStateSetter;
 use yew::platform::spawn_local;
+use yew::UseStateSetter;
 use yew_router::prelude::Navigator;
 
 use crate::get_frontend_url;
@@ -48,7 +48,9 @@ pub fn post_login(
         } else if response.status() == 401 {
             response_text.set("wrong username or password!".to_owned());
         } else if response.status() == 200 {
-            storage.set_item("currentUser", &response_body).expect("current user set to session storage");
+            storage
+                .set_item("currentUser", &response_body)
+                .expect("current user set to session storage");
             navigator.push(&Route::Home);
             location.set_href(&get_frontend_url()).unwrap();
         }

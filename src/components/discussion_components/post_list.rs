@@ -1,5 +1,5 @@
-use yew::prelude::*;
 use crate::requests::get_threads::get_posts_by_thread_id;
+use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {

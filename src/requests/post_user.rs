@@ -1,7 +1,7 @@
 use crate::{get_backend_url, router::Route, User};
 use reqwasm::http::Request;
 use serde_json;
-use yew::{UseStateSetter, platform::spawn_local};
+use yew::{platform::spawn_local, UseStateSetter};
 use yew_router::prelude::*;
 
 pub fn post_user(

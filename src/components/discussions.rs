@@ -1,9 +1,7 @@
 use crate::components::{
-        discussion_components::{
-            thread_list::ThreadListComponent, thread_post::ThreadPostComponent,
-        },
-        ui::button::ButtonComponent,
-    };
+    discussion_components::{thread_list::ThreadListComponent, thread_post::ThreadPostComponent},
+    ui::button::ButtonComponent,
+};
 use yew::prelude::*;
 
 #[function_component]

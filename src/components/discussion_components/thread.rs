@@ -1,4 +1,4 @@
-use yew::{prelude::*, platform::spawn_local};
+use yew::{platform::spawn_local, prelude::*};
 
 use crate::{
     components::discussion_components::post_list::PostListComponent,

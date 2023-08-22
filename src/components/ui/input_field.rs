@@ -1,6 +1,6 @@
-use yew::prelude::*;
 use wasm_bindgen::JsCast;
 use web_sys::HtmlInputElement;
+use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -13,12 +13,11 @@ pub struct Props {
 
 #[function_component]
 pub fn InputFieldComponent(props: &Props) -> Html {
-
     let mut size = 50;
 
     if let Some(size_entry) = props.size.clone() {
         size = size_entry;
-    } 
+    }
 
     let entry = props.on_entry.clone();
 
@@ -34,13 +33,13 @@ pub fn InputFieldComponent(props: &Props) -> Html {
     };
 
     html! {
-        <>  
+        <>
             <link rel={"stylesheet"} href={"/assets/css/input_field_style.css"}/>
             <div class={classes!("login-field")}>
                 <label>{props.label.clone()}</label>
                 <input onchange={onchange} type={props.input_type.clone()} style={format!("width: {}vw", size)}/>
             </div>
-            
+
         </>
     }
 }

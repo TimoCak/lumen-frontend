@@ -1,7 +1,4 @@
-use crate::{
-    is_user_set, requests::post_logout::post_logout,
-    router::Route
-};
+use crate::{is_user_set, requests::post_logout::post_logout, router::Route};
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
 
