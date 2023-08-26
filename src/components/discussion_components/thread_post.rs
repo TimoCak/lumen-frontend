@@ -14,7 +14,6 @@ pub fn ThreadPostComponent() -> Html {
 
     let text = use_state(|| "".to_owned());
     let text_setter = text.setter();
-    let display_text = (*text).clone();
 
     let onchange = Callback::from(move |e: Event| {
         let value = e
@@ -60,7 +59,6 @@ pub fn ThreadPostComponent() -> Html {
                     <InputFieldComponent on_entry={on_title_entry} label={"Title"} input_type={"text"}/>
                 </div>
                 <textarea onchange={onchange}></textarea>
-                {display_text.clone()}
                 <div onclick={onclick} class={"button-container"}>
                     <ButtonComponent size={"20px"} text={"post"}/>
                 </div>
