@@ -13,6 +13,7 @@ pub fn ThreadListComponent() -> Html {
 
     html! {
         <>
+        <link rel={"stylesheet"} href={"/assets/css/thread_list_style.css"}/>
         <div id={"thread-list-container"}>
         {
             threads.iter().map(|thread| {

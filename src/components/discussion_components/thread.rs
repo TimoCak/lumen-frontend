@@ -30,7 +30,9 @@ pub fn ThreadComponent(props: &Props) -> Html {
                 <div>{"by "}<a href={""}>{thread.author.clone()}</a></div>
                 <div class={"thread-text"}>{thread.text.clone()}</div>
             </div>
-            <PostListComponent thread_id={id.clone()}/>
+            <div class={"thread-list-container"}> 
+                <PostListComponent thread_id={id.clone()}/>
+            </div>    
         </>
 
     }

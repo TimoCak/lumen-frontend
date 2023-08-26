@@ -21,3 +21,9 @@
 .thread-text {
     font-size: larger;
 }
+
+.thread-list-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+}

@@ -1,0 +1,5 @@
+#thread-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
