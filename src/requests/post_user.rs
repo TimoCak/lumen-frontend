@@ -3,6 +3,7 @@ use reqwasm::http::Request;
 use serde_json;
 use yew::{platform::spawn_local, UseStateSetter};
 use yew_router::prelude::*;
+use crate::requests::request::Http;
 
 pub fn post_user(
     username: String,
@@ -24,15 +25,8 @@ pub fn post_user(
         use_state_handle_setter.set("Passwords do not match!".to_owned());
     } else {
         spawn_local(async move {
-            let backend_url = get_backend_url();
-            let url = format!("{}/sign-up", backend_url);
-
-            let response = Request::post(&url)
-                .header("Content-Type", "application/json")
-                .body(serde_json::to_string(&user).unwrap())
-                .send()
-                .await
-                .unwrap();
+            let data = serde_json::to_string(&user).unwrap();
+            let response = Http::post("/sign-up".to_string(), data).await;
 
             let fetched_user = response.text().await.unwrap();
 
