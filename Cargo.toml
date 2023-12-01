@@ -7,9 +7,9 @@ authors = ["Timo Caktu <timocaktu@gmail.com>"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-yew = { version = "0.20.0", features = ["csr"] }
+yew = { version = "0.21.0", features = ["csr"] }
 js-sys = "0.3.64"
-yew-router = "0.17"
+yew-router = "0.18"
 dotenvy = "0.15.7"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.102"

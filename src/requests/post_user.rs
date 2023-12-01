@@ -1,5 +1,4 @@
-use crate::{get_backend_url, router::Route, User};
-use reqwasm::http::Request;
+use crate::{router::Route, User};
 use serde_json;
 use yew::{platform::spawn_local, UseStateSetter};
 use yew_router::prelude::*;

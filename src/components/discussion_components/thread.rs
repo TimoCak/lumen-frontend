@@ -17,9 +17,8 @@ pub fn ThreadComponent(props: &Props) -> Html {
     let thread = use_state(|| Thread::new());
     let thread_setter = thread.setter();
 
-    use_effect_with_deps(
-        move |()| spawn_local(async move { get_thread_by_id(thread_setter, id.clone()).await }),
-        (),
+    use_effect_with(
+        (),move |_| {spawn_local(async move { get_thread_by_id(thread_setter, id.clone()).await });}
     );
 
     html! {

@@ -9,7 +9,7 @@ pub fn ThreadListComponent() -> Html {
     let threads = use_state(|| vec![]);
     let threads_setter = threads.setter();
 
-    use_effect_with_deps(move |()| get_threads(threads_setter), ());
+    use_effect_with((), move |_| get_threads(threads_setter));
 
     html! {
         <>

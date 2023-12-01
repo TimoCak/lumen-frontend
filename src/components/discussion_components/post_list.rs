@@ -13,9 +13,8 @@ pub fn PostListComponent(props: &Props) -> Html {
     let post_list_by_thread_id = use_state(|| vec![]);
     let post_list_by_thread_id_setter = post_list_by_thread_id.setter();
 
-    use_effect_with_deps(
-        move |()| get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone()),
-        (),
+    use_effect_with((),
+        move |_| get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone()),
     );
 
     html! {
