@@ -6,12 +6,10 @@ use yew_router::prelude::*;
 #[function_component]
 fn App() -> Html {
     html! {
-        <>
+        <> 
             <BrowserRouter>
-                <link rel={"stylesheet"} href={"/assets/css/app_style.css"} />
                 <HeaderComponent />
                 <Switch<Route> render={switch} />
-                <footer><a target={"_blank"} href={"https://github.com/TimoCak/lumen-frontend"}>{"Github"}</a></footer>
             </BrowserRouter>
         </>
     }

@@ -10,6 +10,7 @@ pub struct Source {
     pub name: Option<String>,
 }
 
+#[allow(non_snake_case)]
 #[derive(Debug, Serialize, Deserialize, Default, Clone, PartialEq)]
 pub struct NewsArticle {
     pub source: Source,
@@ -22,6 +23,7 @@ pub struct NewsArticle {
     pub content: Option<String>,
 }
 
+#[allow(non_snake_case)]
 #[derive(Debug, Serialize, Deserialize, Default, Clone, PartialEq)]
 pub struct News {
     pub status: String,

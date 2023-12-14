@@ -1,6 +1,6 @@
 use yew::prelude::*;
-
 use crate::requests::news_api::{self, News};
+
 
 #[function_component]
 pub fn HomeComponent() -> Html {
@@ -11,8 +11,8 @@ pub fn HomeComponent() -> Html {
     use_effect_with((), move |_| news_api::get_news(news_chunk_setter));
 
     html! {
-        <>
-            <link rel={"stylesheet"} href={"/assets/css/home_style.css"} />
+        <>  
+            <link rel="stylesheet" href="/assets/css/home_style.css" />
             <div class={classes!("lumen-intro")}>
                 <h3>{"Lumen - The Home Of Indie Game Developer!"}</h3>
             </div>
@@ -90,7 +90,7 @@ pub fn HomeComponent() -> Html {
                                 }).collect::<Html>()
                     }
                     </div>
-                </div>
+                </div>  
         </>
     }
 }
