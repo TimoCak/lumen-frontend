@@ -80,7 +80,7 @@ pub fn get_posts_by_thread_id(post_list: UseStateSetter<Vec<Post>>, id: i32) {
     spawn_local(async move {
         let backend_url = get_backend_url();
         let url = format!("{}/posts/threads/{}", backend_url, id);
-
+                
         let response = Request::get(&url).send().await.unwrap();
 
         let response_text = response.json::<Vec<Post>>().await.unwrap();

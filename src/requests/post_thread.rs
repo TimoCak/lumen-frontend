@@ -1,5 +1,4 @@
 use base64::{engine::general_purpose, Engine as _};
-use log::info;
 use reqwasm::http::Request;
 use serde::Serialize;
 use web_sys::window;
@@ -35,7 +34,6 @@ pub fn post_thread(thread_form: ThreadForm, status_message: UseStateSetter<Strin
             "{}:{}",
             &user_stored.username, &user_stored.password
         ));
-        info!("{:?}", auth.clone());
         let response = Request::post(&url)
             .header("Content-Type", "application/json")
             .header("Authorization", format!("Basic {}", &auth).as_ref())

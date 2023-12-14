@@ -10,8 +10,10 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
+    margin-bottom: 2em;
     background-color: rgba(0,0,0,0.8);
     padding: 1em;
+    word-wrap: break-word;
 }
 
 .thread-title {
@@ -23,7 +25,11 @@
 }
 
 .thread-list-container {
+    margin-top: 2em;
     display: flex;
-    flex-direction: row;
-    gap: 5em;
+    flex-direction: column;
+    gap: 2em;
+    min-width: 50%;
+    width: 50%;
+    margin: auto;
 }

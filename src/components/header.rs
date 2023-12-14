@@ -11,7 +11,7 @@ pub fn HeaderComponent() -> Html {
     let logout = Callback::from(move |_| {
         post_logout(navigator.clone(), update.clone());
     });
-
+    
     html! {
         <>
             <link rel={"stylesheet"} href={"/assets/css/header_style.css"}/>
@@ -21,9 +21,9 @@ pub fn HeaderComponent() -> Html {
                 <Link<Route> to={Route::Discussions} classes={classes!("header-link")}><h2>{"Discussions"}</h2></Link<Route>>
 
                 if is_user_set() {
-                    <img onclick={logout} class={classes!("filter-light")} src={"./assets/joystick.svg"}/>
+                    <img onclick={logout} class={classes!("filter-light")} src={"./assets/images/joystick.svg"}/>
                 } else {
-                    <Link<Route> to={Route::Login} classes={classes!("header-link")}><img class={classes!("filter-light")} src={"./assets/sign_in.svg"}/></Link<Route>>
+                    <Link<Route> to={Route::Login} classes={classes!("header-link")}><img class={classes!("filter-light")} src={"./assets/images/sign_in.svg"}/></Link<Route>>
                 }
 
             </div>

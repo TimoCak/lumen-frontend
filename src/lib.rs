@@ -21,7 +21,7 @@ pub struct UserStored {
 }
 
 pub fn get_backend_url() -> String {
-    String::from("https://127.0.0.1:8081/api")
+    String::from("http://127.0.0.1:8081/api")
 }
 
 pub fn get_frontend_url() -> String {

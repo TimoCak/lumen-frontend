@@ -13,9 +13,9 @@ pub fn PostListComponent(props: &Props) -> Html {
     let post_list_by_thread_id = use_state(|| vec![]);
     let post_list_by_thread_id_setter = post_list_by_thread_id.setter();
 
-    use_effect_with((),
-        move |_| get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone()),
-    );
+    use_effect_with((), move |_| {
+        get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone())
+    });
 
     html! {
         <>
@@ -24,10 +24,7 @@ pub fn PostListComponent(props: &Props) -> Html {
                 post_list_by_thread_id.iter().map(|post| {
                     html!{
                         <div class={"post-list-container"}>
-                            <p>{"thread answer"}</p>
-                            <h3 key={post.id}>
-                                {post.title.clone()}
-                            </h3>
+                            <div class={"author"}><a href={""}>{post.author.clone()}</a></div>
                             <div>
                                 {post.text.clone()}
                             </div>
