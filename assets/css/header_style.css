@@ -36,14 +36,4 @@ h1,h2:hover,.filter-light:hover {
     cursor: pointer;
     border-radius: 50%;
     padding: 0.2em;
-    animation: rotation 2s linear infinite;
-}
-
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(90deg);
-    }
 }

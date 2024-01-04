@@ -28,6 +28,8 @@
     padding: 1em;
     text-align: center;
     width: 50vw;
+    animation: lightning 10s ease-out infinite;
+    border-style: solid;
 }
 
 .guide-images {
@@ -57,7 +59,7 @@
    width: 128px;
    height: 128px; 
    border-radius: 50%;
-   animation: rotation 5s linear infinite;
+   animation: rotation 10s linear infinite;
 }
 .top-image {
     width: 320px;
@@ -106,8 +108,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     word-wrap: break-word;
+    grid-gap: 1em;
     padding: 1em;
-
+    text-decoration: center;
+    justify-items: center;
 }
 
 .news-container p {
@@ -148,6 +152,15 @@
         transform: rotate(0deg);
     }
     to {
-        transform: rotate(359deg);
+        transform: rotate(360deg);
     }
+}
+
+@keyframes lightning {
+    0% { opacity: 1; border-color: #E4EE8C; box-shadow: 10px 10px 10px 10px #E4EE8C,-11px 10px 10px 10px #E4EE8C; color: #E4EE8C;} 
+    2% { opacity: 0; border-color: #E4EE8C; box-shadow: 6px 6px 6px 6px #E4EE8C,-7px 6px 6px 6px #E4EE8C;}
+    3% { opacity: 0.6; border-color: #E4EE8C; box-shadow: 3px 3px 3px 3px #E4EE8C,-4px 3px 3px 3px #E4EE8C;}
+    4% { opacity: 0.2; border-color: #E4EE8C; box-shadow: 1px 1px 1px 1px #E4EE8C,-2px 1px 1px 1px #E4EE8C; color: white;}
+    6% { opacity: .9; box-shadow: none;} 
+    100% { opacity: 1;}
 }
