@@ -4,6 +4,18 @@ canvas.style.borderRadius = "10px";
 
 let ctx = canvas.getContext('2d');
 
+/*
+CANVAS-IMAGES
+*/
+let background_image = new Image();
+background_image.src = "/assets/images/forest.png";
+
+let mage_image = new Image();
+mage_image.src = "/assets/images/magician.png";
+
+let zombie_image = new Image();
+zombie_image.src = "/assets/images/zombie_cutted.png";
+
 const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
 gradient.addColorStop("0", "magenta");
 gradient.addColorStop("0.5", "blue");
@@ -32,7 +44,7 @@ let dialog = ["Weichet von mir!", "Die sind so gut wie tot!", "Ich bin unsterbli
 function drawMainMenu() {
     backgroundImage();
     ctx.fillStyle = "black";
-    ctx.fillRect(canvas.width / 4 - 25 , 0, 300, 150);
+    ctx.fillRect(canvas.width / 4 - 75 , 0, 400, 200);
 
     drawMenuMagician();
 
@@ -42,25 +54,20 @@ function drawMainMenu() {
     ctx.fillText("Welcome Wizard!", canvas.width / 2 , 50);
 
     ctx.font = '20px Arial';
-    ctx.fillText("Kill them all!!! -__-", canvas.width / 2, 100);
+    ctx.fillText("Zombies invading this Website!", canvas.width / 2, 100);
+    ctx.fillText("Kill them with your magical power!",canvas.width / 2, 150);
 
 }
 
 function drawMenuMagician() {
-    let mage_image = new Image();
-    mage_image.src = "/assets/images/magician.png";
     ctx.drawImage(mage_image, canvas.width / 2 - 200, canvas.height / 2 - 50);
 }
 
 function backgroundImage() {
-    let background_image = new Image();
-    background_image.src = "/assets/images/forest.png"
     ctx.drawImage(background_image, 0, 0, canvas.width, canvas.height);
 }
 
 function drawMagician() {
-    let mage_image = new Image();
-    mage_image.src = "/assets/images/magician.png";
     ctx.drawImage(mage_image, magicianCoord.x, magicianCoord.y, mageSize, mageSize);
 }
 
@@ -89,8 +96,6 @@ function drawDialog(randomIndex) {
 }
 
 function drawAndMoveZombies() {
-    let zombie_image = new Image();
-    zombie_image.src = "/assets/images/zombie_cutted.png";
     zombies.forEach((zombie) => {
         ctx.drawImage(zombie_image, zombie.x, zombie.y, zombieSize, zombieSize);
         zombie.x += left.x / 4;
@@ -104,21 +109,21 @@ function drawPoints() {
 }
 
 function drawAndEnableCombo() {
-    let comboText = "Combo:";
+    let comboText = "Combo: ";
     ctx.fillStyle = gradient;
     ctx.font = '20px Arial';
     if (points > 100) {
         combo = 4;
-        ctx.fillText("Combo: " + combo + "x", 60, 25);
+        ctx.fillText(comboText + combo + "x", 60, 25);
         ctx.fillText("FICK SIE !!!", 60, 50);
     }
     else if (points > 50) {
         combo = 3;
-        ctx.fillText("Combo: " + combo + "x", 60, 25);
+        ctx.fillText(comboText + combo + "x", 60, 25);
     }
     else if (points > 10) {
         combo = 2;
-        ctx.fillText("Combo: " + combo + "x", 60, 25);
+        ctx.fillText(comboText + combo + "x", 60, 25);
     } else {
         combo = 1;
     }
@@ -237,7 +242,6 @@ document.body.addEventListener('keydown', function (event) {
             break;
         case "s":
             if (magicianCoord.y < canvas.height - 50) {
-                console.log(magicianCoord.y + " " + canvas.height);
                 magicianCoord.x += down.x;
                 magicianCoord.y += down.y;
             }
@@ -255,7 +259,7 @@ document.body.addEventListener('keydown', function (event) {
     }
 });
 
-document.body.addEventListener('mousedown', function (event) {
+canvas.addEventListener('mousedown', function (event) {
     shootCounter++;
     randomIndex = Math.floor(Math.random() * dialog.length);
     if (run) {
@@ -267,4 +271,3 @@ document.body.addEventListener('mousedown', function (event) {
 });
 
 drawMainMenu();
-

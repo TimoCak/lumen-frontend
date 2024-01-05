@@ -106,7 +106,7 @@
 
 .news-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     word-wrap: break-word;
     grid-gap: 1em;
     padding: 1em;
@@ -140,11 +140,16 @@
     border: 0.5px;
     border-style: solid;
     border-radius: 5px;
-    width: 90%;
+    height: auto;
+    width: 100%;
 }
 
 .news-item:hover {
     box-shadow: 3px 3px 3px 3px #E4EE8C,-4px 3px 3px 3px #E4EE8C;
+}
+
+#unreal-image {
+    background-color: white;
 }
 
 @keyframes rotation {

@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use crate::requests::news_api::{self, News, NewsArticle};
+use crate::requests::news_api::{self, News};
 
 
 #[function_component]
@@ -21,9 +21,6 @@ pub fn HomeComponent() -> Html {
             <div style={"display: flex; justify-content: center;"}>
                 <canvas id={"canvas"} width={"500px"} height= {"500px"}></canvas>
             </div>    
-            <audio id={"audio"} controls={true}>
-                <source src={"/assets/audio/ResidentEvilSaveRoomTheme.mp3"} type={"audio/mpeg"} />
-            </audio>
 
             <div class={classes!("home-section")}>
                 <h3>{"Guides"}</h3>
@@ -31,20 +28,29 @@ pub fn HomeComponent() -> Html {
 
                     <div class={"guide-images"}>
                         <div class={"image-container"}>
-                            <img class={"guide-image"} src={"/assets/images/bevy.png"} />
+                            <a href={"https://bevyengine.org/"} target={"blank"}>
+                                <img class={"guide-image"} src={"/assets/images/bevy.png"} />
+                            </a>    
                             <span>{"Bevy"}</span>
                         </div>
                         <div class={"image-container"}>
-                            <img class={"guide-image"} src={"/assets/images/unreal.png"} />
+                            <img id={"unreal-image"} class={"guide-image"} src={"/assets/images/unreal.png"} />
                             <span>{"Unreal"}</span>
                         </div>
                         <div class={"image-container"}>
                             <img class={"guide-image"} src={"/assets/images/godot.webp"} />
                             <span>{"Godot"}</span>
                         </div>
+                        
+                        <div class={"image-container"}>
+                            <a href={"https://docs.unity.com/"} target={"blank"}>
+                                <img class={"guide-image"} src={"/assets/images/unity.png"} />    
+                            </a>
+                            <span>{"Unity"}</span>
+                        </div>
                     </div>
 
-                    <h3>{"Top 10"}</h3>
+                    <h3>{"Top Rated Showcases"}</h3>
                     <hr class={"line"}/>
                     <div class={"top-images"}>
                         <div class={"top-image-container"}>
@@ -98,8 +104,7 @@ pub fn HomeComponent() -> Html {
                     }
                     </div>
                 </div>  
-                <script src={"/assets/js/playAudio.js"}></script>
-                <script src={"/assets/js/mageJumping.js"}></script>
+                <script src={"/assets/js/mageVsZombies.js"}></script>
         </>
     }
 }
