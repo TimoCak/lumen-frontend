@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use crate::requests::news_api::{self, News};
+use crate::requests::news_api::{self, News, NewsArticle};
 
 
 #[function_component]
@@ -7,16 +7,23 @@ pub fn HomeComponent() -> Html {
     let news_chunk = use_state(|| News::default());
     let news_chunk_setter = news_chunk.setter();
     let articles = (*news_chunk).clone().articles;
-
+    
     use_effect_with((), move |_| news_api::get_news(news_chunk_setter));
 
     html! {
         <>  
             <link rel="stylesheet" href="/assets/css/home_style.css" />
+            
             <div class={classes!("lumen-intro")}>
                 <h3>{"Lumen - The Home Of Indie Game Developer!"}</h3>
             </div>
 
+            <div style={"display: flex; justify-content: center;"}>
+                <canvas id={"canvas"} width={"500px"} height= {"500px"}></canvas>
+            </div>    
+            <audio id={"audio"} controls={true}>
+                <source src={"/assets/audio/ResidentEvilSaveRoomTheme.mp3"} type={"audio/mpeg"} />
+            </audio>
 
             <div class={classes!("home-section")}>
                 <h3>{"Guides"}</h3>
@@ -91,6 +98,8 @@ pub fn HomeComponent() -> Html {
                     }
                     </div>
                 </div>  
+                <script src={"/assets/js/playAudio.js"}></script>
+                <script src={"/assets/js/mageJumping.js"}></script>
         </>
     }
 }
