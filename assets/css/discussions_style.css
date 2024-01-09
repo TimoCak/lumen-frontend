@@ -2,10 +2,30 @@
     text-align: center;
     margin-top: 2em;
     color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    overflow-x: hidden;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.action-section {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 10px;
 }
 
 .toggle-button-container {
     width: 10vw;
     margin-left: auto;
     margin-right: auto;
+}
+
+a {
+    color: white;
+    text-decoration: none;
 }

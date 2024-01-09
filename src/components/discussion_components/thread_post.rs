@@ -56,14 +56,17 @@ pub fn ThreadPostComponent() -> Html {
             <link rel={"stylesheet"} href={"/assets/css/thread_post_style.css"} />
             <div  class={"thread-post-container"}>
                 <div class={"input-field-container"}>
-                    <InputFieldComponent on_entry={on_title_entry} label={"Title"} input_type={"text"}/>
+                    <InputFieldComponent placeholder={"give your thread a title"} on_entry={on_title_entry} label={"Title"} input_type={"text"} size={30}/>
                 </div>
-                <textarea onchange={onchange}></textarea>
+
+                <span>{"Text"}</span>
+                <textarea placeholder={"express your opinion"} id={"editor"} onchange={onchange}></textarea>
+        
                 <div onclick={onclick} class={"button-container"}>
-                    <ButtonComponent size={"20px"} text={"post"}/>
+                    <ButtonComponent size={"20px"} text={"add discussion"}/>
                 </div>
                 //Dropdown for categories!
-                <p>{display_status_message}</p>
+                <p class={"status-message"}>{display_status_message}</p>
             </div>
         </>
     }

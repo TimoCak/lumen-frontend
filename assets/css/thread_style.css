@@ -23,13 +23,3 @@
 .thread-text {
     font-size: larger;
 }
-
-.thread-list-container {
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    min-width: 50%;
-    width: 50%;
-    margin: auto;
-}

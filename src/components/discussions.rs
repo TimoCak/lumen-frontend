@@ -22,15 +22,15 @@ pub fn DiscussionsComponent() -> Html {
         <>
             <link rel={"stylesheet"} href={"/assets/css/discussions_style.css"}/>
             <div class={"discussions-container"}>
-                <div >
+                <ThreadListComponent />
+                <div class={"action-section"}>
                     <div class={"toggle-button-container"} onclick={ontoggle}>
-                        <ButtonComponent text={"post thread"} size={"16"}/>
+                        <ButtonComponent text={"➕ New Discussion"} size={"20px"}/>
                     </div>
                     if toggle_display {
                         <ThreadPostComponent />
                     }
                 </div>
-                <ThreadListComponent />
             </div>
         </>
     }

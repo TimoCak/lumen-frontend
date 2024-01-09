@@ -32,7 +32,7 @@
     border-style: solid;
 }
 
-.guide-images {
+.guide-images, .canvas-games {
     display: flex;
     justify-content: space-evenly;
     align-items: center;

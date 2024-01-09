@@ -18,9 +18,7 @@ pub fn HomeComponent() -> Html {
                 <h3>{"Lumen - The Home Of Indie Game Developer!"}</h3>
             </div>
 
-            <div style={"display: flex; justify-content: center;"}>
-                <canvas id={"canvas"} width={"500px"} height= {"500px"}></canvas>
-            </div>    
+                
 
             <div class={classes!("home-section")}>
                 <h3>{"Guides"}</h3>
@@ -82,6 +80,14 @@ pub fn HomeComponent() -> Html {
                             <span>{"JoJo2"}</span>
                         </div>
                     </div>
+
+                    <h3>{"Canvas Games"}</h3>
+                    <hr class={"line"}/>
+                    <div class={"canvas-games"}>
+                        <canvas id={"canvas"} width={"500px"} height= {"500px"}></canvas>
+                        <canvas id={"snake-canvas"} width={"500px"} height= {"500px"}></canvas>
+                    </div>
+
                     <h3>{"News"}</h3>
                     <hr class={"line"}/>
                     <div class={"news-container"}>
@@ -105,6 +111,7 @@ pub fn HomeComponent() -> Html {
                     </div>
                 </div>  
                 <script src={"/assets/js/mageVsZombies.js"}></script>
+                <script src={"/assets/js/snake.js"}></script>
         </>
     }
 }
