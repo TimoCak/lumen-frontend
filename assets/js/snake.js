@@ -20,10 +20,34 @@ var snakeCell = 20;
 //initiale Punkte
 var punkte = 0;
 
+//indicator if game is running
+var snakeGameRun = false;
+
 //Spielstand zeichnen:
 
 var snakeCanvas = document.getElementById('snake-canvas');
 var sctx = snakeCanvas.getContext('2d');
+
+snakeCanvas.style.backgroundColor = "#D3D3D3";
+snakeCanvas.style.borderRadius = "10px";
+
+function drawSnakeMenu() {
+    sctx.fillStyle = "black";
+    sctx.fillRect(0, 0, snakeCanvas.width, snakeCanvas.width);
+
+    let title = "SNAKE";
+    sctx.fillStyle = 'white';
+    sctx.textAlign = 'center';
+    sctx.font = '50px Arial';
+    sctx.fillText(title, snakeCanvas.width / 2, snakeCanvas.height / 2);
+
+    drawSnake([
+            {x: 10, y: 15}, 
+            {x: 11, y: 15}, 
+            {x: 12, y: 15}
+        ]);
+    drawFruit(fruit);
+}
 
 function drawFruit(fruit) {
     sctx.lineWidth = 2;
@@ -122,34 +146,41 @@ function mod(n, m) {
     return ((n % m) + m) % m;
 }
 
+function initialSetup() {
+    snake = [{ x: 3, y: 2 }, { x: 4, y: 2 }, { x: 5, y: 2 }];
+    fruit = { x: 5, y: 5 };
+    currentDirection = links;
+    punkte = 0;
+}
+
 //Game-und Animation-Loop
+function startSnakeGame() {
+    initialSetup();
+    var intervalID = setInterval(function () {
+        //Bewegen und zeichnen der Schlange
 
-var intervalID = setInterval(function () {
-    //Bewegen und zeichnen der Schlange
+        var tail = moveSnake(snake, currentDirection);
 
-    var tail = moveSnake(snake, currentDirection);
-
-    if (fruitCollidesWithSnake(snake, fruit)) {
-        fruit = randomCoordinateOutsideSnake(snake);
-        snake.push(tail);
-    }
-    sctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
-    drawSnake(snake);
-    drawFruit(fruit);
+        if (fruitCollidesWithSnake(snake, fruit)) {
+            fruit = randomCoordinateOutsideSnake(snake);
+            snake.push(tail);
+        }
+        sctx.clearRect(0, 0, snakeCanvas.width, snakeCanvas.height);
+        drawSnake(snake);
+        drawFruit(fruit);
 
 
-    //wenn das Spiel beendet ist, muss setInterval gestoppt werden:
-    if (snakeHeadCollidesWithSnake(snake)) {
-        punkte = snake.length - 3;
-        drawGameOver(punkte);
-        clearInterval(intervalID);
-    }
-}, 150);
+        //wenn das Spiel beendet ist, muss setInterval gestoppt werden:
+        if (snakeHeadCollidesWithSnake(snake)) {
+            punkte = snake.length - 3;
+            drawGameOver(punkte);
+            clearInterval(intervalID);
+            snakeGameRun = false;
+        }
+    }, 150);
+}
 
 //Key-Down listener
-
-
-
 document.body.addEventListener('keydown', function (event) {
 
     if ((event.key == "ArrowRight") && (currentDirection != links)) {
@@ -172,3 +203,12 @@ document.body.addEventListener('keydown', function (event) {
     }
 
 });
+
+snakeCanvas.addEventListener('mousedown', function (event) {
+    if (!snakeGameRun) {
+        startSnakeGame();
+        snakeGameRun = true;
+    }
+});
+
+drawSnakeMenu();

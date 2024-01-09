@@ -1,70 +1,81 @@
-let canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas");
 canvas.style.backgroundColor = "#D3D3D3";
 canvas.style.borderRadius = "10px";
 
-let ctx = canvas.getContext('2d');
+var ctx = canvas.getContext('2d');
 
 /*
 CANVAS-IMAGES
 */
-let background_image = new Image();
-background_image.src = "/assets/images/forest.png";
+var background_image = new Image();
+var mage_image = new Image();
+var zombie_image = new Image();
 
-let mage_image = new Image();
-mage_image.src = "/assets/images/magician.png";
+function loadImages() {
+    background_image.src = "/assets/images/forest.png";
+    mage_image.src = "/assets/images/magician.png";
+    zombie_image.src = "/assets/images/zombie_cutted.png";
+}
 
-let zombie_image = new Image();
-zombie_image.src = "/assets/images/zombie_cutted.png";
-
-const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
 gradient.addColorStop("0", "magenta");
 gradient.addColorStop("0.5", "blue");
 gradient.addColorStop("1.0", "red");
 
-const bulletSize = 5;
-const mageSize = 50;
-const zombieSize = 50;
+var bulletSize = 5;
+var mageSize = 50;
+var zombieSize = 50;
 
-let points = 0;
-let run = false;
-let combo = 1;
+var points = 0;
+var run = false;
+var combo = 1;
 
-let magicianCoord = { x: canvas.width / 2, y: canvas.height / 2 };
+var magicianCoord = { x: canvas.width / 2, y: canvas.height / 2 };
 
 //direction vecs
-const left = { x: -10, y: 0 };
-const right = { x: 10, y: 0 };
-const up = { x: 0, y: -10 };
-const down = { x: 0, y: 10 };
+var left = { x: -10, y: 0 };
+var right = { x: 10, y: 0 };
+var up = { x: 0, y: -10 };
+var down = { x: 0, y: 10 };
 
-let bullets = [];
-let zombies = [];
-let dialog = ["Weichet von mir!", "Die sind so gut wie tot!", "Ich bin unsterblich!", "Schon einmal gegen ein Zauberer gekämpf?"];
+var bullets = [];
+var zombies = [];
+var dialog = ["Weichet von mir!", "Die sind so gut wie tot!", "Ich bin unsterblich!", "Schon einmal gegen ein Zauberer gekämpf?"];
 
-function drawMainMenu() {
-    backgroundImage();
-    ctx.fillStyle = "black";
-    ctx.fillRect(canvas.width / 4 - 75 , 0, 400, 200);
+async function drawMainMenu() {
+    await drawBackgroundImage();
 
-    drawMenuMagician();
+    setTimeout(() => {
+        ctx.fillStyle = "black";
+        ctx.fillRect(canvas.width / 4 - 75, 0, 400, 200);
+    }, 500)
 
-    ctx.fillStyle = gradient;
-    ctx.textAlign = "center";
-    ctx.font = '30px Arial';
-    ctx.fillText("Welcome Wizard!", canvas.width / 2 , 50);
+    await drawMenuMagician();
 
-    ctx.font = '20px Arial';
-    ctx.fillText("Zombies invading this Website!", canvas.width / 2, 100);
-    ctx.fillText("Kill them with your magical power!",canvas.width / 2, 150);
+    setTimeout(() => {
+        ctx.fillStyle = gradient;
+        ctx.textAlign = "center";
+        ctx.font = '30px Arial';
+        ctx.fillText("Welcome Wizard!", canvas.width / 2, 50);
+    }, 500)
 
+    setTimeout(() => {
+        ctx.font = '20px Arial';
+        ctx.fillText("Zombies invading this Website!", canvas.width / 2, 100);
+        ctx.fillText("Kill them with your magical power!", canvas.width / 2, 150);
+    }, 500)
 }
 
-function drawMenuMagician() {
-    ctx.drawImage(mage_image, canvas.width / 2 - 200, canvas.height / 2 - 50);
+async function drawMenuMagician() {
+    setTimeout(() => {
+        ctx.drawImage(mage_image, canvas.width / 2 - 200, canvas.height / 2 - 50);
+    }, 500)
 }
 
-function backgroundImage() {
-    ctx.drawImage(background_image, 0, 0, canvas.width, canvas.height);
+async function drawBackgroundImage() {
+    setTimeout(() => {
+        ctx.drawImage(background_image, 0, 0, canvas.width, canvas.height);
+    }, 500)
 }
 
 function drawMagician() {
@@ -187,7 +198,7 @@ function changeDifficulty() {
     if (points > 100) {
         difficulty = 25;
     } else if (points > 50) {
-       difficulty = 40;
+        difficulty = 40;
     }
     let dice = Math.floor((Math.random() * difficulty) + 1)
     if (dice === difficulty) {
@@ -216,12 +227,12 @@ function startGame() {
         if (shootCounter % 10 === 0) {
             drawDialog(randomIndex);
         }
-        
+
     }, 10);
 }
 
-let shootCounter = 0;
-let randomIndex = Math.floor(Math.random() * dialog.length);
+var shootCounter = 0;
+var randomIndex = Math.floor(Math.random() * dialog.length);
 
 document.body.addEventListener('keydown', function (event) {
     //check if mage is out of canvas
@@ -270,4 +281,8 @@ canvas.addEventListener('mousedown', function (event) {
     }
 });
 
-drawMainMenu();
+function initialSetup() {
+    loadImages();
+    drawMainMenu();
+}
+initialSetup();
