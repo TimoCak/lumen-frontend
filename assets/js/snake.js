@@ -6,10 +6,10 @@ var snake = [{ x: 3, y: 2 }, { x: 4, y: 2 }, { x: 5, y: 2 }];
 var fruit = { x: 5, y: 5 };
 
 //direction vecs
-links = { x: -1, y: 0 };
-rechts = { x: 1, y: 0 };
-oben = { x: 0, y: -1 };
-unten = { x: 0, y: 1 };
+var links = { x: -1, y: 0 };
+var rechts = { x: 1, y: 0 };
+var oben = { x: 0, y: -1 };
+var unten = { x: 0, y: 1 };
 
 //Richtung, in der sich die Schlange momentan bewegt
 var currentDirection = links;
@@ -151,11 +151,12 @@ function initialSetup() {
     fruit = { x: 5, y: 5 };
     currentDirection = links;
     punkte = 0;
+    drawSnake(snake);
+    drawFruit(fruit);
 }
 
 //Game-und Animation-Loop
 function startSnakeGame() {
-    initialSetup();
     var intervalID = setInterval(function () {
         //Bewegen und zeichnen der Schlange
 
@@ -206,6 +207,7 @@ document.body.addEventListener('keydown', function (event) {
 
 snakeCanvas.addEventListener('mousedown', function (event) {
     if (!snakeGameRun) {
+        initialSetup();
         startSnakeGame();
         snakeGameRun = true;
     }
