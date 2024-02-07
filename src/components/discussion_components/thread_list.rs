@@ -26,7 +26,8 @@ pub fn ThreadListComponent() -> Html {
                             {thread.title.clone()}
                         </h3>
                         <p class={"author"}>{thread.clone().author}</p>
-                        <p class={"timestamp"}>{DateTime::from_timestamp(thread.clone().created_at.secs_since_epoch.into(), 0).unwrap().to_rfc2822()}</p>
+                        <p class={"timestamp"}>{DateTime::from_timestamp(thread.clone().created_at.secs_since_epoch.into(), 0
+                        ).unwrap().to_rfc2822()}</p>
                     </div>
                     </Link<Route>>
                     </>                
