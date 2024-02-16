@@ -42,7 +42,7 @@ const NEWS_AMOUNT: usize = 20;
 pub fn get_news(news_chunk_setter: UseStateSetter<News>) {
     spawn_local(async move {
         //let url = format!("{}/posts/threads/{}", backend_url, id);
-        let url = "https://newsapi.org/v2/everything?q=gaming&language=en&from=2024-01-01&sortBy=publishedAt&apiKey=e7ae4bb45c3f443d8710166599bf1119";        
+        let url = "https://newsapi.org/v2/everything?q=gaming&language=en&from=2024-02-01&sortBy=publishedAt&apiKey=e7ae4bb45c3f443d8710166599bf1119";        
         let response = Request::get(&url).send().await.unwrap();
 
         let response_text = response.json::<News>().await;
