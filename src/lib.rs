@@ -4,6 +4,7 @@ use web_sys::window;
 pub mod components;
 pub mod requests;
 pub mod router;
+pub mod models;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct User {
