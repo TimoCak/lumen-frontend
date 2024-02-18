@@ -1,5 +1,5 @@
 use yew::prelude::*;
-use crate::requests::news_api::{self, News};
+use crate::{apis::news_api, models::news::News};
 
 
 #[function_component]

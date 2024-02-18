@@ -1,8 +1,7 @@
-use yew::{platform::spawn_local, prelude::*};
+use yew::prelude::*;
 
 use crate::{
-    components::discussion_components::post_list::PostListComponent,
-    requests::get_threads::{get_thread_by_id, Thread},
+    apis::backend_api::Backend, components::discussion_components::post_list::PostListComponent, models::thread::Thread
 };
 
 #[derive(Properties, PartialEq)]
@@ -18,7 +17,7 @@ pub fn ThreadComponent(props: &Props) -> Html {
     let thread_setter = thread.setter();
 
     use_effect_with(
-        (),move |_| {spawn_local(async move { get_thread_by_id(thread_setter, id.clone()).await });}
+        (),move |_| Backend::get_thread_by_id(thread_setter, id.clone())
     );
 
     html! {

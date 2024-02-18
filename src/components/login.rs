@@ -1,6 +1,6 @@
 use crate::components::ui::button::ButtonComponent;
 use crate::components::ui::input_field::InputFieldComponent;
-use crate::requests::post_login::post_login;
+use crate::apis::backend_api::Backend;
 use crate::router::Route;
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
@@ -29,7 +29,7 @@ pub fn LoginComponent() -> Html {
     });
 
     let onclick = Callback::from(move |_| {
-        post_login(
+        Backend::post_login(
             &username_entry,
             &password_entry,
             navigator.clone(),

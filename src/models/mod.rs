@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 pub mod thread;
 pub mod post;
 pub mod user;
+pub mod news;
 
 #[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Default)]
 pub struct Timestamp {

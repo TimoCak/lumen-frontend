@@ -1,4 +1,4 @@
-use crate::{is_user_set, requests::post_logout::post_logout, router::Route};
+use crate::{is_user_set, apis::backend_api::Backend, router::Route};
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
 
@@ -9,7 +9,7 @@ pub fn HeaderComponent() -> Html {
     let update = use_force_update();
 
     let logout = Callback::from(move |_| {
-        post_logout(navigator.clone(), update.clone());
+        Backend::post_logout(navigator.clone(), update.clone());
     });
     
     html! {

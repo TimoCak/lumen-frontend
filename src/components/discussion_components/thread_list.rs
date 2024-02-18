@@ -2,7 +2,7 @@ use yew::prelude::*;
 use yew_router::prelude::Link;
 use chrono::DateTime;
 
-use crate::requests::get_threads::get_threads;
+use crate::apis::backend_api::Backend;
 use crate::router::Route;
 
 #[function_component]
@@ -10,7 +10,7 @@ pub fn ThreadListComponent() -> Html {
     let threads = use_state(|| vec![]);
     let threads_setter = threads.setter();
 
-    use_effect_with((), move |_| get_threads(threads_setter));
+    use_effect_with((), move |_| Backend::get_threads(threads_setter));
 
     html! {
         <>

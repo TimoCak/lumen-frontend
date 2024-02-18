@@ -1,33 +1,12 @@
-use serde::{Deserialize, Serialize};
 use web_sys::window;
 
 pub mod components;
-pub mod requests;
+pub mod apis;
 pub mod router;
 pub mod models;
 
-#[derive(Serialize, Deserialize, Debug)]
-pub struct User {
-    username: String,
-    email: String,
-    password: String,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-pub struct UserStored {
-    id: i32,
-    username: String,
-    email: String,
-    password: String,
-}
-
-pub fn get_backend_url() -> String {
-    String::from("http://127.0.0.1:8081/api")
-}
-
-pub fn get_frontend_url() -> String {
-    String::from("http://127.0.0.1:8080")
-}
+pub const BACKEND_URL: &str = "http://127.0.0.1:8081/api";
+pub const FRONTEND_URL: &str = "http://127.0.0.1:8080";
 
 pub fn is_user_set() -> bool {
     let store = window().unwrap().session_storage().unwrap().unwrap();

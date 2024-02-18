@@ -1,4 +1,4 @@
-use crate::requests::get_threads::get_posts_by_thread_id;
+use crate::apis::backend_api::Backend;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -14,7 +14,7 @@ pub fn PostListComponent(props: &Props) -> Html {
     let post_list_by_thread_id_setter = post_list_by_thread_id.setter();
 
     use_effect_with((), move |_| {
-        get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone())
+        Backend::get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone())
     });
 
     html! {

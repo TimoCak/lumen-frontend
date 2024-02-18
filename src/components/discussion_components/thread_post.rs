@@ -1,7 +1,5 @@
 use crate::{
-    components::ui::{button::ButtonComponent, input_field::InputFieldComponent},
-    requests::post_thread::{post_thread, ThreadForm},
-    UserStored,
+    apis::backend_api::Backend, components::ui::{button::ButtonComponent, input_field::InputFieldComponent}, models::{thread::ThreadForm, user::UserStored}
 };
 use wasm_bindgen::JsCast;
 use web_sys::{window, HtmlTextAreaElement};
@@ -48,7 +46,7 @@ pub fn ThreadPostComponent() -> Html {
             text: (*text).clone(),
             categories: vec![], //need further implementation! -> select option values
         };
-        post_thread(thread_form, status_message.setter());
+        Backend::post_thread(thread_form, status_message.setter());
     });
 
     html! {
