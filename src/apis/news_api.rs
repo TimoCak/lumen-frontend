@@ -13,6 +13,13 @@ const URL: &str = "https://newsapi.org/v2";
 const LANGUAGE: &str = "en";
 const TOPIC: &str = "gaming";
 
+fn calc_starting_news_date(current_day: u32) -> u32 {
+    if current_day > DAY_RANGE {
+        return current_day - DAY_RANGE
+    }
+    1
+}
+
 pub fn get_news(news_chunk_setter: UseStateSetter<News>) {
     spawn_local(async move {
         let local_time: DateTime<Local> = Local::now();
@@ -21,7 +28,7 @@ pub fn get_news(news_chunk_setter: UseStateSetter<News>) {
             "{}-{}-{}",
             local_time.year(),
             local_time.month(),
-            local_time.day() - DAY_RANGE
+            calc_starting_news_date(local_time.day())
         );
 
         console::log_1(&JsValue::from_str(&datestring));
@@ -33,7 +40,12 @@ pub fn get_news(news_chunk_setter: UseStateSetter<News>) {
 
         match response_text {
             Ok(mut v) => {
-                v.set_articles(v.articles[1..=NEWS_AMOUNT].to_vec());
+                if v.articles.len() < NEWS_AMOUNT {
+                    v.set_articles(v.articles.to_vec());
+                } else {
+                    v.set_articles(v.articles[1..=NEWS_AMOUNT].to_vec());
+                }
+                
                 news_chunk_setter.set(v);
             }
             Err(e) => {
