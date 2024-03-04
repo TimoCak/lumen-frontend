@@ -41,7 +41,7 @@ pub fn RegisterComponent() -> Html {
     });
 
     let onclick = Callback::from(move |_| {
-        Backend::post_user(
+        Backend::sign_up(
             (*username_entry).clone(),
             (*email_entry).clone(),
             (*password_entry).clone(),

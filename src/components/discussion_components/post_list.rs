@@ -14,7 +14,7 @@ pub fn PostListComponent(props: &Props) -> Html {
     let post_list_by_thread_id_setter = post_list_by_thread_id.setter();
 
     use_effect_with((), move |_| {
-        Backend::get_posts_by_thread_id(post_list_by_thread_id_setter, id.clone())
+        Backend::get_posts_by_thread_id(id.clone(), post_list_by_thread_id_setter)
     });
 
     html! {

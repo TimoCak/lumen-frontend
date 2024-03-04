@@ -14,3 +14,11 @@ pub struct Post {
     pub likes: Option<i32>,
     pub dislikes: Option<i32>,
 }
+
+#[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Default)]
+pub struct PostForm {
+    pub thread_id: i32,
+    pub author: String,
+    pub title: String,
+    pub text: String,
+}

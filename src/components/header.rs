@@ -9,7 +9,7 @@ pub fn HeaderComponent() -> Html {
     let update = use_force_update();
 
     let logout = Callback::from(move |_| {
-        Backend::post_logout(navigator.clone(), update.clone());
+        Backend::sign_out(navigator.clone(), update.clone());
     });
     
     html! {

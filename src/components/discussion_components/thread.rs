@@ -17,7 +17,7 @@ pub fn ThreadComponent(props: &Props) -> Html {
     let thread_setter = thread.setter();
 
     use_effect_with(
-        (),move |_| Backend::get_thread_by_id(thread_setter, id.clone())
+        (),move |_| Backend::get_thread_by_id(id.clone(), thread_setter)
     );
 
     html! {

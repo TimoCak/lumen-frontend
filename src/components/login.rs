@@ -29,7 +29,7 @@ pub fn LoginComponent() -> Html {
     });
 
     let onclick = Callback::from(move |_| {
-        Backend::post_login(
+        Backend::sign_in(
             &username_entry,
             &password_entry,
             navigator.clone(),

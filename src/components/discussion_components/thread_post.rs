@@ -46,7 +46,7 @@ pub fn ThreadPostComponent() -> Html {
             text: (*text).clone(),
             categories: vec![], //need further implementation! -> select option values
         };
-        Backend::post_thread(thread_form, status_message.setter());
+        Backend::create_thread(thread_form, status_message.setter());
     });
 
     html! {
