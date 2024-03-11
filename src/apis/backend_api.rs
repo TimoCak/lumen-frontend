@@ -14,7 +14,7 @@ use crate::{
     BACKEND_URL, FRONTEND_URL,
 };
 
-pub struct Backend {}
+pub struct Backend;
 
 impl Backend {
     pub fn get_threads(thread_list: UseStateSetter<Vec<Thread>>) {
@@ -339,6 +339,7 @@ impl Backend {
                 .unwrap();
 
             let fetched_user: User = response.json().await.unwrap();
+            //storing updated user in session storage here
             updated_user.set(fetched_user);
         })
     }
