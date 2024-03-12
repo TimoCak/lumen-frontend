@@ -83,11 +83,14 @@
 
 @media screen and (max-width: 1200px) and (min-width: 800px) {
     .top-images {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    .canvas-games {
+        display: none;
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1300px) {
     .top-images {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -96,6 +99,22 @@
 @media screen and (min-width: 1800px) {
     .top-images {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .canvas-games {
+        display: none;
+    }
+
+    .guide-image {
+        width: 32px;
+        height: 32px;
+    }
+
+    .top-image {
+        width: 180px;
+        height: 128px;
     }
 }
 

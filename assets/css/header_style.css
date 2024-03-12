@@ -2,26 +2,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 0.8em;
 }
 
-h1,h2 {
+h1,
+h2 {
     cursor: pointer;
     border-radius: 10px;
-    font-size: 36px;  
+    font-size: 36px;
     margin: 0px !important;
 }
 
-h1,h2:hover,.filter-light:hover {
-    transform: scale(1.1,1.1);
+h1,
+h2:hover,
+.filter-light:hover {
+    transform: scale(1.1, 1.1);
     box-shadow: 3px 3px 3px #E4EE8C, -4px 3px 3px #E4EE8C;
     transition: 0.5s;
 }
 
 .filter-light:hover {
-    transform: scale(1.1,1.1);
+    transform: scale(1.1, 1.1);
     box-shadow: 3px 3px 3px grey, -4px 3px 3px grey;
     transition: 0.5s;
 }
@@ -36,4 +39,12 @@ h1,h2:hover,.filter-light:hover {
     cursor: pointer;
     border-radius: 50%;
     padding: 0.2em;
+}
+
+@media screen and (max-width: 400px) {
+
+    h1,
+    h2 {
+        font-size: 16px;
+    }
 }

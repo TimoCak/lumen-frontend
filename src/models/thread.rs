@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use super::Timestamp;
 
-#[derive(Debug, Deserialize, Serialize, Clone, PartialEq)]
+#[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Default)]
 pub struct Thread {
     pub id: i32,
     pub author: String,
@@ -14,7 +14,7 @@ pub struct Thread {
     pub categories: Vec<String>,
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Clone)]
 pub struct ThreadForm {
     pub author: String,
     pub title: String,

@@ -1,17 +1,15 @@
 use base64::{engine::general_purpose, Engine as _};
 use reqwasm::http::Request;
 use web_sys::window;
-use yew::{platform::spawn_local, UseForceUpdateHandle, UseStateSetter};
+use yew::{platform::spawn_local, Callback, UseForceUpdateHandle, UseStateSetter};
 use yew_router::navigator::Navigator;
 
 use crate::{
-    models::{
+    get_session_storage, models::{
         post::{Post, PostForm},
         thread::{Thread, ThreadForm},
         user::{PostUser, User, UserStored},
-    },
-    router::Route,
-    BACKEND_URL, FRONTEND_URL,
+    }, router::Route, BACKEND_URL, FRONTEND_URL
 };
 
 pub struct Backend;
@@ -43,35 +41,37 @@ impl Backend {
         });
     }
 
-    pub fn create_thread(thread_form: ThreadForm, status_message: UseStateSetter<String>) {
-        let storage = window().unwrap().session_storage().unwrap().unwrap();
+    pub fn create_thread(thread_form: ThreadForm, status_message: UseStateSetter<String>, callback: Callback<Thread>) {
+        let storage = get_session_storage();
+
+        let url = format!("{}/threads", BACKEND_URL);
+
+        let user_stored: UserStored = serde_json::from_str(
+            &storage
+                .get_item("currentUser")
+                .unwrap()
+                .expect("failed to get curerntUser from storage!"),
+        )
+        .unwrap();
+
+        let auth = general_purpose::STANDARD.encode(format!(
+            "{}:{}",
+            &user_stored.username, &user_stored.password
+        ));
 
         spawn_local(async move {
-            let url = format!("{}/threads", BACKEND_URL);
-
-            let user_stored: UserStored = serde_json::from_str(
-                &storage
-                    .get_item("currentUser")
-                    .unwrap()
-                    .expect("failed to get curerntUser from storage!"),
-            )
-            .unwrap();
-
-            let auth = general_purpose::STANDARD.encode(format!(
-                "{}:{}",
-                &user_stored.username, &user_stored.password
-            ));
             let response = Request::post(&url)
                 .header("Content-Type", "application/json")
                 .header("Authorization", format!("Basic {}", &auth).as_ref())
                 .header("withCredentials", "true")
-                .body(serde_json::to_string(&thread_form).unwrap())
+                .body(&serde_json::to_string(&thread_form).unwrap())
                 .send()
                 .await
                 .unwrap();
 
             if response.status() == 201 {
                 status_message.set("succesfully posted thread!".to_string());
+                callback.emit(response.json().await.unwrap());
             } else {
                 status_message.set("something went wrong during posting this thread!".to_string());
             }

@@ -26,22 +26,25 @@ pub fn HomeComponent() -> Html {
 
                     <div class={"guide-images"}>
                         <div class={"image-container"}>
-                            <a href={"https://bevyengine.org/"} target={"blank"}>
+                            <a href={"https://bevyengine.org/"} target={"_blank"}>
                                 <img class={"guide-image"} src={"/assets/images/bevy.png"} />
                             </a>    
                             <span>{"Bevy"}</span>
                         </div>
                         <div class={"image-container"}>
-                            <img id={"unreal-image"} class={"guide-image"} src={"/assets/images/unreal.png"} />
-                            <span>{"Unreal"}</span>
+                            <a href={"https://www.unrealengine.com/en-US/learn"} target="_blank">
+                                <img id={"unreal-image"} class={"guide-image"} src={"/assets/images/unreal.png"} />
+                            </a>
+                        <span>{"Unreal"}</span>    
                         </div>
                         <div class={"image-container"}>
-                            <img class={"guide-image"} src={"/assets/images/godot.webp"} />
-                            <span>{"Godot"}</span>
-                        </div>
-                        
+                            <a href={"https://godotengine.org/"} target={"_blank"}>
+                                <img class={"guide-image"} src={"/assets/images/godot.webp"} />
+                            </a>
+                        <span>{"Godot"}</span>    
+                        </div> 
                         <div class={"image-container"}>
-                            <a href={"https://docs.unity.com/"} target={"blank"}>
+                            <a href={"https://docs.unity.com/"} target={"_blank"}>
                                 <img class={"guide-image"} src={"/assets/images/unity.png"} />    
                             </a>
                             <span>{"Unity"}</span>

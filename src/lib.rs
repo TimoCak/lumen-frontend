@@ -1,4 +1,4 @@
-use web_sys::window;
+use web_sys::{window, Storage};
 
 pub mod components;
 pub mod apis;
@@ -23,4 +23,8 @@ pub fn is_user_set() -> bool {
     }
 
     return false;
+}
+
+pub fn get_session_storage() -> Storage {
+    window().unwrap().session_storage().unwrap().unwrap()
 }
