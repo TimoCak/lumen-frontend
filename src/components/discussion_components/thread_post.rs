@@ -1,11 +1,7 @@
-use crate::{
-    apis::backend_api::Backend,
-    components::ui::{button::ButtonComponent, input_field::InputFieldComponent},
-    models::{
-        thread::{Thread, ThreadForm},
-        user::UserStored,
-    },
-};
+use crate::{apis::backend_api::Backend, components::ui::{button::ButtonComponent, input_field::InputFieldComponent}, get_logged_in_user, models::{
+    thread::{Thread, ThreadForm},
+    user::UserStored,
+}};
 use wasm_bindgen::JsCast;
 use web_sys::{window, HtmlTextAreaElement};
 use yew::prelude::*;
@@ -45,15 +41,8 @@ pub fn ThreadPostComponent(props: &Props) -> Html {
         title_setter.set(title);
     });
 
-    let store = window().unwrap().session_storage().unwrap().unwrap();
+    let user_stored: UserStored = get_logged_in_user();
 
-    let user_stored: UserStored = serde_json::from_str(
-        &store
-            .get_item("currentUser")
-            .unwrap()
-            .expect("failed to get curerntUser from storage!"),
-    )
-    .unwrap();
     let thread_form = ThreadForm {
         author: user_stored.username.clone(),
         title: (*title).clone(),

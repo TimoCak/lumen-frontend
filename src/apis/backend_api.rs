@@ -1,16 +1,13 @@
-use base64::{engine::general_purpose, Engine as _};
 use reqwasm::http::Request;
 use web_sys::window;
 use yew::{platform::spawn_local, Callback, UseForceUpdateHandle, UseStateSetter};
 use yew_router::navigator::Navigator;
 
-use crate::{
-    get_session_storage, models::{
-        post::{Post, PostForm},
-        thread::{Thread, ThreadForm},
-        user::{PostUser, User, UserStored},
-    }, router::Route, BACKEND_URL, FRONTEND_URL
-};
+use crate::{models::{
+    post::{Post, PostForm},
+    thread::{Thread, ThreadForm},
+    user::{PostUser, User, UserStored},
+}, router::Route, BACKEND_URL, FRONTEND_URL, get_base64_auth_credentials};
 
 pub struct Backend;
 
@@ -42,27 +39,13 @@ impl Backend {
     }
 
     pub fn create_thread(thread_form: ThreadForm, status_message: UseStateSetter<String>, callback: Callback<Thread>) {
-        let storage = get_session_storage();
-
         let url = format!("{}/threads", BACKEND_URL);
 
-        let user_stored: UserStored = serde_json::from_str(
-            &storage
-                .get_item("currentUser")
-                .unwrap()
-                .expect("failed to get curerntUser from storage!"),
-        )
-        .unwrap();
-
-        let auth = general_purpose::STANDARD.encode(format!(
-            "{}:{}",
-            &user_stored.username, &user_stored.password
-        ));
 
         spawn_local(async move {
             let response = Request::post(&url)
                 .header("Content-Type", "application/json")
-                .header("Authorization", format!("Basic {}", &auth).as_ref())
+                .header("Authorization", format!("Basic {}", get_base64_auth_credentials()).as_ref())
                 .header("withCredentials", "true")
                 .body(&serde_json::to_string(&thread_form).unwrap())
                 .send()
@@ -70,7 +53,7 @@ impl Backend {
                 .unwrap();
 
             if response.status() == 201 {
-                status_message.set("succesfully posted thread!".to_string());
+                status_message.set("successfully posted thread!".to_string());
                 callback.emit(response.json().await.unwrap());
             } else {
                 status_message.set("something went wrong during posting this thread!".to_string());
@@ -94,14 +77,17 @@ impl Backend {
         })
     }
 
-    pub fn delete_thread(id: i32, deleted_thread: UseStateSetter<Thread>) {
+    pub fn delete_thread(id: i32) {
         spawn_local(async move {
             let url = format!("{}/threads/{}", BACKEND_URL, id);
 
-            let response = Request::delete(&url).send().await.unwrap();
+            let response = Request::delete(&url)
+                .header("Authorization", format!("Basic {}", get_base64_auth_credentials()).as_ref())
+                .send()
+                .await
+                .unwrap();
 
-            let fetched_thread: Thread = response.json().await.unwrap();
-            deleted_thread.set(fetched_thread)
+            //let fetched_thread: Thread = response.json().await.unwrap();
         })
     }
 
@@ -181,8 +167,8 @@ impl Backend {
                 .await
                 .unwrap();
 
-            let fetech_post: Post = response.json().await.unwrap();
-            updated_post.set(fetech_post);
+            let fetched_post: Post = response.json().await.unwrap();
+            updated_post.set(fetched_post);
         })
     }
 
