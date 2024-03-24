@@ -1,14 +1,23 @@
 use yew::prelude::*;
 use crate::{apis::news_api, models::news::News};
+use crate::apis::news_api::NEWS_OFFSET_START;
 
 
 #[function_component]
 pub fn HomeComponent() -> Html {
     let news_chunk = use_state(|| News::default());
     let news_chunk_setter = news_chunk.setter();
+    let news_offset: UseStateHandle<usize> = use_state(|| NEWS_OFFSET_START);
     let articles = (*news_chunk).clone().articles;
-    
-    use_effect_with((), move |_| news_api::get_news(news_chunk_setter));
+
+
+    use_effect_with(news_offset.clone(), move |offset| news_api::get_news(news_chunk_setter, (*offset.to_owned())));
+
+    let increment_offset = Callback::from(move |_| {
+        let news_offset_new = (*news_offset).clone() + NEWS_OFFSET_START;
+
+        news_offset.setter().clone().set(news_offset_new);
+    });
 
     html! {
         <>  
@@ -112,7 +121,8 @@ pub fn HomeComponent() -> Html {
                                 }).collect::<Html>()
                     }
                     </div>
-                </div>  
+                    <button onclick={increment_offset}>{"load more news"}</button>
+                </div>
                 <script src={"/assets/js/mageVsZombies.js"}></script>
                 <script src={"/assets/js/snake.js"}></script>
         </>
