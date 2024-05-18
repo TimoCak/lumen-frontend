@@ -1,7 +1,10 @@
-use crate::components::{
-    discussion_components::thread::ThreadComponent, discussions::DiscussionsComponent,
-    home::HomeComponent, login::LoginComponent, register::RegisterComponent,
-    showcase::ShowcaseComponent,
+use crate::{
+    components::{
+        discussion_components::thread::ThreadComponent, discussions::DiscussionsComponent,
+        home::HomeComponent, login::LoginComponent, register::RegisterComponent,
+        showcase::ShowcaseComponent,
+    },
+    style::set_styles::set_initial_style,
 };
 use yew::prelude::*;
 use yew_router::prelude::*;
@@ -32,6 +35,9 @@ pub enum Route {
 }
 
 pub fn switch(routes: Route) -> Html {
+    //sets the initial head-tags innerHTML
+    set_initial_style(); 
+
     match routes {
         Route::Home => html! { <><HomeComponent /></>},
         Route::Showcase => html! { <><ShowcaseComponent /></>},

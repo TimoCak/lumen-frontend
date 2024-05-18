@@ -1,11 +1,12 @@
 use base64::{engine::general_purpose, Engine as _};
-use web_sys::{window, Storage, Location};
+use web_sys::{window, Document, Location, Storage};
 use crate::models::user::UserStored;
 
 pub mod components;
 pub mod apis;
 pub mod router;
 pub mod models;
+pub mod style;
 
 pub const BACKEND_URL: &str = "http://127.0.0.1:8081/api";
 pub const FRONTEND_URL: &str = "http://127.0.0.1:8080";
@@ -40,6 +41,11 @@ pub(crate) fn get_session_storage() -> Storage {
 
 pub(crate) fn get_location() -> Location {
     window().unwrap().location()
+    
+}
+
+pub(crate) fn get_document() -> Document {
+    window().unwrap().document().unwrap()
 }
 
 pub(crate) fn compare_uid_to_logged_in_uid(uid: &str) -> bool {

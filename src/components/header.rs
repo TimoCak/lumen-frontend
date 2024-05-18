@@ -1,4 +1,4 @@
-use crate::{is_user_set, apis::backend_api::Backend, router::Route};
+use crate::{apis::backend_api::Backend, is_user_set, router::Route};
 use yew::prelude::*;
 use yew_router::prelude::{use_navigator, Link};
 
@@ -11,10 +11,10 @@ pub fn HeaderComponent() -> Html {
     let logout = Callback::from(move |_| {
         Backend::sign_out(navigator.clone(), update.clone());
     });
-    
+
     html! {
         <>
-            <link rel={"stylesheet"} href={"/assets/css/header_style.css"}/>
+
             <div class={classes!("header")}>
                 <Link<Route> to={Route::Home} classes={classes!("header-link")}><h1>{"Lumen"}</h1></Link<Route>>
                 <Link<Route> to={Route::Showcase} classes={classes!("header-link")}><h2>{"Showcase"}</h2></Link<Route>>

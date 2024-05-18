@@ -3,7 +3,7 @@ use crate::{apis::backend_api::Backend, components::ui::{button::ButtonComponent
     user::UserStored,
 }};
 use wasm_bindgen::JsCast;
-use web_sys::{window, HtmlTextAreaElement};
+use web_sys::HtmlTextAreaElement;
 use yew::prelude::*;
 
 #[derive(PartialEq, Properties, Clone)]

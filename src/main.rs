@@ -6,7 +6,7 @@ use yew_router::prelude::*;
 #[function_component]
 fn App() -> Html {
     html! {
-        <> 
+        <>
             <BrowserRouter>
                 <HeaderComponent />
                 <Switch<Route> render={switch} />

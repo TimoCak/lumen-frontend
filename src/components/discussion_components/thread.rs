@@ -1,7 +1,15 @@
+use crate::{
+    apis::backend_api::Backend,
+    compare_uid_to_logged_in_uid,
+    components::{
+        discussion_components::post_list::PostListComponent, ui::button::ButtonComponent,
+    },
+    get_location,
+    models::thread::Thread,
+    style::set_styles::set_component_style,
+    FRONTEND_URL,
+};
 use yew::prelude::*;
-use yew_router::hooks::{use_location, use_navigator};
-use crate::{apis::backend_api::Backend, components::discussion_components::post_list::PostListComponent, models::thread::Thread, compare_uid_to_logged_in_uid, components::ui::button::ButtonComponent, get_location, FRONTEND_URL};
-use crate::router::Route;
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -10,6 +18,8 @@ pub struct Props {
 
 #[function_component]
 pub fn ThreadComponent(props: &Props) -> Html {
+    set_component_style("thread_style.css");
+
     let id = props.id;
 
     let thread = use_state(|| Thread::new());
@@ -19,15 +29,16 @@ pub fn ThreadComponent(props: &Props) -> Html {
 
     let onclick = Callback::from(move |_| {
         Backend::delete_thread(id.clone());
-        location.set_href(&format!("{}/discussions", FRONTEND_URL)).unwrap();
+        location
+            .set_href(&format!("{}/discussions", FRONTEND_URL))
+            .unwrap();
     });
-    use_effect_with(
-        (), move |_| Backend::get_thread_by_id(id.clone(), thread_setter),
-    );
+    use_effect_with((), move |_| {
+        Backend::get_thread_by_id(id.clone(), thread_setter)
+    });
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"/assets/css/thread_style.css"} />
             <div class={"thread-container"}>
                 <h3 class={"thread-title"}>{thread.title.clone()}</h3>
                 <div>{"by "}<a href={""}>{thread.author.clone()}</a></div>
@@ -38,7 +49,7 @@ pub fn ThreadComponent(props: &Props) -> Html {
                     </div>
                 }
             </div>
-            <div class={"thread-list-container"}> 
+            <div class={"thread-list-container"}>
                 <PostListComponent thread_id={id.clone()}/>
             </div>
         </>

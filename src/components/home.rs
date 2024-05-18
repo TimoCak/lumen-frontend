@@ -1,7 +1,6 @@
-use yew::prelude::*;
-use crate::{apis::news_api, models::news::News};
 use crate::apis::news_api::NEWS_OFFSET_START;
-
+use crate::{apis::news_api, models::news::News};
+use yew::prelude::*;
 
 #[function_component]
 pub fn HomeComponent() -> Html {
@@ -10,8 +9,9 @@ pub fn HomeComponent() -> Html {
     let news_offset: UseStateHandle<usize> = use_state(|| NEWS_OFFSET_START);
     let articles = (*news_chunk).clone().articles;
 
-
-    use_effect_with(news_offset.clone(), move |offset| news_api::get_news(news_chunk_setter, (*offset.to_owned())));
+    use_effect_with(news_offset.clone(), move |offset| {
+        news_api::get_news(news_chunk_setter, *offset.to_owned())
+    });
 
     let increment_offset = Callback::from(move |_| {
         let news_offset_new = (*news_offset).clone() + NEWS_OFFSET_START;
@@ -20,14 +20,14 @@ pub fn HomeComponent() -> Html {
     });
 
     html! {
-        <>  
+        <>
             <link rel="stylesheet" href="/assets/css/home_style.css" />
-            
+
             <div class={classes!("lumen-intro")}>
                 <h3>{"Lumen - The Home Of Indie Game Developer!"}</h3>
             </div>
 
-                
+
 
             <div class={classes!("home-section")}>
                 <h3>{"Guides"}</h3>
@@ -37,24 +37,24 @@ pub fn HomeComponent() -> Html {
                         <div class={"image-container"}>
                             <a href={"https://bevyengine.org/"} target={"_blank"}>
                                 <img class={"guide-image"} src={"/assets/images/bevy.png"} />
-                            </a>    
+                            </a>
                             <span>{"Bevy"}</span>
                         </div>
                         <div class={"image-container"}>
                             <a href={"https://www.unrealengine.com/en-US/learn"} target="_blank">
                                 <img id={"unreal-image"} class={"guide-image"} src={"/assets/images/unreal.png"} />
                             </a>
-                        <span>{"Unreal"}</span>    
+                        <span>{"Unreal"}</span>
                         </div>
                         <div class={"image-container"}>
                             <a href={"https://godotengine.org/"} target={"_blank"}>
                                 <img class={"guide-image"} src={"/assets/images/godot.webp"} />
                             </a>
-                        <span>{"Godot"}</span>    
-                        </div> 
+                        <span>{"Godot"}</span>
+                        </div>
                         <div class={"image-container"}>
                             <a href={"https://docs.unity.com/"} target={"_blank"}>
-                                <img class={"guide-image"} src={"/assets/images/unity.png"} />    
+                                <img class={"guide-image"} src={"/assets/images/unity.png"} />
                             </a>
                             <span>{"Unity"}</span>
                         </div>
@@ -103,10 +103,10 @@ pub fn HomeComponent() -> Html {
                     <h3>{"News"}</h3>
                     <hr class={"line"}/>
                     <div class={"news-container"}>
-                    {   
+                    {
                         articles.iter().map(|article| {
                             html!{
-                                <>  
+                                <>
                                 <div class={"news-item"}>
                                     <a target={"_blank"} href={article.url.clone()}>
                                     <h4 key={article.clone().title.unwrap()}>
