@@ -1,6 +1,6 @@
+use chrono::DateTime;
 use yew::prelude::*;
 use yew_router::prelude::Link;
-use chrono::DateTime;
 
 use crate::models::thread::Thread;
 use crate::router::Route;
@@ -14,9 +14,8 @@ pub struct Props {
 pub fn ThreadListComponent(props: &Props) -> Html {
     html! {
         <>
-        <link rel={"stylesheet"} href={"/assets/css/thread_list_style.css"}/>
         <div id={"thread-list-container"}>
-        {   
+        {
             props.threads.iter().map(|thread| {
                 html!{
                     <>
@@ -30,8 +29,8 @@ pub fn ThreadListComponent(props: &Props) -> Html {
                         ).unwrap().to_rfc2822()}</p>
                     </div>
                     </Link<Route>>
-                    </>                
-                } 
+                    </>
+                }
             }).rev().collect::<Html>()
         }
         </div>

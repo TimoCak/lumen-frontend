@@ -41,7 +41,6 @@ pub fn DiscussionsComponent() -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"/assets/css/discussions_style.css"}/>
             <div class={"discussions-container"}>
                 <ThreadListComponent threads={threads_clone}/>
                 <div class={"action-section"}>

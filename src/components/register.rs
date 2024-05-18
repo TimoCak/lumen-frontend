@@ -53,7 +53,6 @@ pub fn RegisterComponent() -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"/assets/css/register_style.css"} />
             <div class={classes!("login-form")}>
                 <InputFieldComponent on_entry={on_username_entry} label={"username:"} input_type={"text"}/>
                 <InputFieldComponent on_entry={on_email_entry} label={"email:"} input_type={"email"}/>

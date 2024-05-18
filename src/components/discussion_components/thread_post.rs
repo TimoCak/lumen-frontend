@@ -1,7 +1,12 @@
-use crate::{apis::backend_api::Backend, components::ui::{button::ButtonComponent, input_field::InputFieldComponent}, get_logged_in_user, models::{
-    thread::{Thread, ThreadForm},
-    user::UserStored,
-}};
+use crate::{
+    apis::backend_api::Backend,
+    components::ui::{button::ButtonComponent, input_field::InputFieldComponent},
+    get_logged_in_user,
+    models::{
+        thread::{Thread, ThreadForm},
+        user::UserStored,
+    },
+};
 use wasm_bindgen::JsCast;
 use web_sys::HtmlTextAreaElement;
 use yew::prelude::*;
@@ -54,7 +59,6 @@ pub fn ThreadPostComponent(props: &Props) -> Html {
 
     html! {
         <>
-            <link rel={"stylesheet"} href={"/assets/css/thread_post_style.css"} />
             <div  class={"thread-post-container"}>
                 <div class={"input-field-container"}>
                     <InputFieldComponent placeholder={"give your thread a title"} on_entry={on_title_entry} label={"Title"} input_type={"text"} size={30}/>

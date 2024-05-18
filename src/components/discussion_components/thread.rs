@@ -18,7 +18,9 @@ pub struct Props {
 
 #[function_component]
 pub fn ThreadComponent(props: &Props) -> Html {
-    set_component_style("thread_style.css");
+    //set components style
+    let style_vec: Vec<String> = vec![String::from("thread_style.css"), String::from("button_style.css"), String::from("post_list_style.css")];
+    set_component_style(style_vec);
 
     let id = props.id;
 
@@ -39,6 +41,7 @@ pub fn ThreadComponent(props: &Props) -> Html {
 
     html! {
         <>
+
             <div class={"thread-container"}>
                 <h3 class={"thread-title"}>{thread.title.clone()}</h3>
                 <div>{"by "}<a href={""}>{thread.author.clone()}</a></div>

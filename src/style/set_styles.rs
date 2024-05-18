@@ -21,12 +21,18 @@ pub fn set_initial_style() {
         .set_inner_html(INITIAL_HEAD);
 }
 
-pub fn set_component_style(css: &str) {
+pub fn set_component_style(css: Vec<String>) {
     let document: Document = get_document();
-    let component_style = format!(r#"<link rel="stylesheet" href="/assets/css/{}">"#, css);
+
+    let mut current_style: String = INITIAL_HEAD.to_string();
+
+    for file in css {
+        let component_style = format!(r#"<link rel="stylesheet" href="/assets/css/{}">"#, file);
+        current_style.push_str(&component_style);
+    }
 
     document
         .get_element_by_id("head")
         .unwrap()
-        .set_inner_html(&format!("{}{}", INITIAL_HEAD, component_style));
+        .set_inner_html(&current_style);
 }

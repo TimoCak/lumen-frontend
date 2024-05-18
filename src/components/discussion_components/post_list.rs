@@ -1,4 +1,4 @@
-use crate::{apis::backend_api::Backend, style::set_styles::set_component_style};
+use crate::apis::backend_api::Backend;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -8,7 +8,6 @@ pub struct Props {
 
 #[function_component]
 pub fn PostListComponent(props: &Props) -> Html {
-    set_component_style("post_list_style.css");
     let id = props.thread_id.clone();
 
     let post_list_by_thread_id = use_state(|| vec![]);
