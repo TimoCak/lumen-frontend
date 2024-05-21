@@ -220,7 +220,6 @@ impl Backend {
                     .set_item("currentUser", &response_body)
                     .expect("current user set to session storage");
                 navigator.push(&Route::Home);
-                location.set_href(FRONTEND_URL).unwrap();
             }
         });
     }

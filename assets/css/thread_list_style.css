@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-    min-width: 50%;
-    width: 90%;
 }
 
 .thread-info {

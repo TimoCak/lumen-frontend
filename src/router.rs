@@ -72,6 +72,7 @@ pub fn switch(routes: Route) -> Html {
                 String::from("thread_style.css"),
                 String::from("button_style.css"),
                 String::from("post_list_style.css"),
+                String::from("post_style.css"),
             ]);
             html! {<><ThreadComponent id={id}/></>}
         }

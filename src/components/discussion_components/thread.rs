@@ -52,9 +52,7 @@ pub fn ThreadComponent(props: &Props) -> Html {
                     </div>
                 }
             </div>
-            <div class={"thread-list-container"}>
-                <PostListComponent thread_id={id.clone()}/>
-            </div>
+            <PostListComponent thread_id={id.clone()}/>
         </>
 
     }

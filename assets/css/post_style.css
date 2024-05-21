@@ -1,0 +1,6 @@
+.post-container {
+    border: 2px;
+    border-style: solid;
+    border-color: white;
+    background-color: rgba(0,0,0,0.8);
+}

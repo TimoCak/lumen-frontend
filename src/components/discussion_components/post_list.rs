@@ -1,4 +1,5 @@
 use crate::apis::backend_api::Backend;
+use crate::components::discussion_components::post::PostComponent;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
@@ -19,18 +20,23 @@ pub fn PostListComponent(props: &Props) -> Html {
 
     html! {
         <>
+            <div class={"post-list-container"}>
+
             {
-                post_list_by_thread_id.iter().map(|post| {
-                    html!{
-                        <div class={"post-list-container"}>
-                            <div class={"author"}><a href={""}>{post.author.clone()}</a></div>
-                            <div>
-                                {post.text.clone()}
-                            </div>
-                        </div>
+                if post_list_by_thread_id.len() > 0 {
+                    post_list_by_thread_id.iter().map(|post| {
+                        html! {
+                          <PostComponent post={post.clone()}/>
+                        }
+                      }).collect::<Html>()
+                } else {
+                    html! {
+                        <p>{"be the first to answer this thread!"}</p>
                     }
-                }).collect::<Html>()
+                }
+
             }
+            </div>
         </>
     }
 }
