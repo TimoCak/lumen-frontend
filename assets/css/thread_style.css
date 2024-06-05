@@ -1,16 +1,12 @@
 .thread-container {
     text-align: center;
-    border: 2px;
-    border-style: solid;
+    border: 2px solid;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 1em;
     width: 80vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin: 2em auto;
     background-color: rgba(0,0,0,0.8);
     padding: 1em;
     word-wrap: break-word;
@@ -24,6 +20,22 @@
     font-size: larger;
 }
 
-.button-component {
+#thread-delete-button {
     margin-left: 90%;
+    cursor: pointer;
+}
+
+#create-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#create-post-button {
+    display: block;
+    margin: auto;
+}
+
+textarea {
+    height: 300px;
+    font-size: 16px;
 }
