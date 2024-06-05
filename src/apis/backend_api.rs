@@ -145,6 +145,7 @@ impl Backend {
 
             let response = Request::post(&url)
                 .header("Content-Type", "application/json")
+                .header("Authorization", format!("Basic {}", get_base64_auth_credentials()).as_ref())
                 .body(serde_json::to_string(&post_form).unwrap())
                 .send()
                 .await
